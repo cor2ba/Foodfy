@@ -7,21 +7,23 @@ const RecipeCreator = () => {
       <div className={a.Countainer}>
         <h1 className={a.Title}>WELCOME TO RECIPE CREATOR</h1>
         <div className={a.Form}>
-          <h3>TITLE OF THE RECIPE :</h3>
+          <h3 className={a.Subtitle}>TITLE OF THE RECIPE :</h3>
           <input className={a.InputCreate} placeholder="TITLE..."></input>
-          <h3>MAKE A SUMMARY OF THE RECIPE :</h3>
+          <h3 className={a.Subtitle}>MAKE A SUMMARY OF THE RECIPE :</h3>
           <input className={a.InputCreate} placeholder="SUMMARY..."></input>
-          <h3>CHOOSE A CUSTOMER HEALTH SCORE :</h3>
+          <h3 className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</h3>
           <input
             className={a.InputCreate}
             placeholder="HEALTH SCORE..."
           ></input>
-          <h3>MAKE A STEP TO STEP OF THE RECIPE :</h3>
+          <h3 className={a.Subtitle}>MAKE A STEP TO STEP OF THE RECIPE :</h3>
           <input
             className={a.InputCreate}
             placeholder="STEP TO STEP..."
           ></input>
-          <h3>CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :</h3>
+          <h3 className={a.Subtitle}>
+            CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
+          </h3>
           <select className={a.SelectDiet}>
             <option className={a.CreatorOption} value="">
               GLUTEN FREE

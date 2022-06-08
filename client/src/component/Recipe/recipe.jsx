@@ -1,6 +1,6 @@
 import React from "react";
 import a from "./recipe.module.css";
-import img from "../../imgs/gorrocheft.png";
+import img from "../../imgs/chefhat.png";
 import { Link } from "react-router-dom";
 
 const Recipe = () => {

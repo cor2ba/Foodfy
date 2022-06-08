@@ -5,12 +5,28 @@
   position: absolute;
   left: 10%;
   right: 10%;
+  top: 10%;
+  bottom: 10%;
+}
+
+.Subtitle {
+  border: 2px solid black;
+  color: rgba(0, 0, 0, 0.762);
+  background: linear-gradient(
+    to right,
+    rgb(255, 0, 0),
+    rgb(0, 128, 0),
+    rgb(255, 255, 0)
+  );
+  padding: 2px;
+  border-radius: 10px;
 }
 
 .Countainer {
-  background-image: url("https://i.pinimg.com/736x/fd/37/55/fd37559fcb30a22a33527dce4f29c109.jpg");
-  width: 600px;
-  height: 1001px;
+  background-image: url(../../imgs/creatorrecipe.jpg);
+  background-size: cover;
+  width: 800px;
+  height: 900px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +35,10 @@
 }
 
 .Title {
-  color: black;
+  border: 2px solid black;
+  color: rgba(0, 0, 0, 0.762);
+  background: linear-gradient(to right, red, green, yellow);
+  border-radius: 10px;
 }
 
 .Form {
@@ -30,17 +49,26 @@
 }
 
 .InputCreate {
+  background-color: rgba(0, 0, 0, 0.762);
   text-align: center;
   width: 200px;
   border: 2px solid black;
   height: 27px;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-family: Cardo;
 }
 
 .SelectDiet {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
+  border: 2px solid black;
   text-align: center;
   width: 208px;
-  border: 2px solid black;
   height: 33px;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-family: Cardo;
+}
+
+::placeholder {
+  color: white;
 }

@@ -1,10 +1,11 @@
-body {
-  margin: 0;
-  background-image: url("https://cloudfront-us-east-1.images.arcpublishing.com/infobae/WVUERN2UUZDXHPHOX6LCBCGAPQ.jpg");
-}
-
 .CountainerNav {
-  background-color: rgba(0, 0, 0, 0.307);
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0.351),
+    rgba(0, 128, 0, 0.365),
+    rgba(255, 255, 0, 0.365)
+  );
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,37 +20,45 @@ body {
 .Title {
   border: 2px solid black;
   color: black;
-  background-color: aliceblue;
+  background: linear-gradient(to right, red, green, yellow);
   width: 200px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .SeachRecipes {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
   border: 2px solid black;
   height: 20px;
-  border-radius: 5px;
+  font-family: Cardo;
 }
 
 .DietOrderSelect {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
   border: 2px solid black;
   height: 27px;
-  border-radius: 5px;
+  font-family: Cardo;
 }
 
 .AlphabeticOrder {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
   border: 2px solid black;
   height: 27px;
-  border-radius: 5px;
+  font-family: Cardo;
 }
 
 .ButtonCreator {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
   border: 2px solid black;
   height: 27px;
   margin-right: 25px;
-  border-radius: 5px;
+  font-family: Cardo;
 }
 
 ::placeholder {
-  color: black;
+  color: white;
 }
