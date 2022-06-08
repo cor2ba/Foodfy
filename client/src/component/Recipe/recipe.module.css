@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  background-image: url("https://cloudfront-us-east-1.images.arcpublishing.com/infobae/WVUERN2UUZDXHPHOX6LCBCGAPQ.jpg");
+}
+
+.CountainerNav {
+  background-color: rgba(0, 0, 0, 0.307);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.IcoImg {
+  margin-left: 25px;
+  width: 80px;
+  height: 80px;
+}
+
+.Title {
+  border: 2px solid black;
+  color: black;
+  background-color: aliceblue;
+  width: 200px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.SeachRecipes {
+  border: 2px solid black;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.DietOrderSelect {
+  border: 2px solid black;
+  height: 27px;
+  border-radius: 5px;
+}
+
+.AlphabeticOrder {
+  border: 2px solid black;
+  height: 27px;
+  border-radius: 5px;
+}
+
+.ButtonCreator {
+  border: 2px solid black;
+  height: 27px;
+  margin-right: 25px;
+  border-radius: 5px;
+}
+
+::placeholder {
+  color: black;
+}

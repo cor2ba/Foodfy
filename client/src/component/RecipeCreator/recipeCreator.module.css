@@ -1,0 +1,46 @@
+.Parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 10%;
+  right: 10%;
+}
+
+.Countainer {
+  background-image: url("https://i.pinimg.com/736x/fd/37/55/fd37559fcb30a22a33527dce4f29c109.jpg");
+  width: 600px;
+  height: 1001px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+}
+
+.Title {
+  color: black;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.InputCreate {
+  text-align: center;
+  width: 200px;
+  border: 2px solid black;
+  height: 27px;
+  border-radius: 5px;
+}
+
+.SelectDiet {
+  text-align: center;
+  width: 208px;
+  border: 2px solid black;
+  height: 33px;
+  border-radius: 5px;
+}
