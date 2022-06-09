@@ -1,12 +1,20 @@
 .Countainer {
-  background-color: rgba(0, 0, 0, 0.47);
   width: 300px;
-  height: 400px;
-  gap: 20px;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  background-image: url("https://st.depositphotos.com/1695098/1207/i/600/depositphotos_12070017-stock-photo-menu-background.jpg");
+  background: linear-gradient(to right, green, white, red);
   background-position: center;
+  border: 2px solid black;
+}
+
+.Img {
+  max-height: 200px;
+}
+
+.Diets {
+  border-radius: 20px;
+  color: black;
 }
 
 .Link {
@@ -14,10 +22,19 @@
 }
 
 .Title {
-  color: aliceblue;
+  color: black;
   font-size: 20px;
   text-align: center;
   border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
+  text-shadow: white 2px 2px 2px;
+}
+
+.Subtitle {
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 10px;
+  text-shadow: white 2px 2px 2px;
 }

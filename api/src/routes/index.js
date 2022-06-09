@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "e495ee53f621493f8855565bea64f124";
+const apiKey = "3e1e782da07242bfa0e366775f718b62";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -29,8 +29,8 @@ router.get("/recipes", async (req, res) => {
     let mapedData = recipesData.map((f) => {
       return {
         image: f.image,
-        title: f.title,
-        diets: f.diets,
+        title: f.title.toUpperCase(),
+        diets: f.diets.map((d) => d.toUpperCase()),
       };
     });
     const tableBd = await Recipe.findAll({

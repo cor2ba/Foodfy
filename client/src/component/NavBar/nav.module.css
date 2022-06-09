@@ -1,9 +1,9 @@
 .CountainerNav {
   background: linear-gradient(
     to right,
-    rgba(0, 128, 0, 0.412),
-    rgba(255, 255, 255, 0.503),
-    rgba(255, 0, 0, 0.436)
+    rgb(0, 128, 0),
+    rgb(255, 255, 255),
+    rgb(255, 0, 0)
   );
   background-size: cover;
   display: flex;
@@ -21,7 +21,7 @@
   border: 2px solid black;
   color: black;
   background: linear-gradient(to right, green, white, red);
-  width: 140px;
+  width: 150px;
   text-align: center;
   border-radius: 10px;
   text-decoration: none;

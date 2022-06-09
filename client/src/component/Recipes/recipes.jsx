@@ -3,6 +3,7 @@ import RecipesCard from "../RecipesCard/recipesCard";
 import { getAllRecipes } from "../../redux/actions";
 import { connect } from "react-redux";
 import a from "./recipes.module.css";
+import NavBar from "../NavBar/nav";
 
 const Recipes = (props) => {
   useEffect(() => {
@@ -10,16 +11,17 @@ const Recipes = (props) => {
   }, []);
   return (
     <div className={a.Countainer}>
-      <h1>Recipes</h1>
+      <div className={a.NavBar}>
+        <NavBar />
+      </div>
       <div className={a.Card}>
         {props.recipes?.map((r) => {
           return (
             <RecipesCard
               key={r.id}
-              id={r.id}
+              image={r.image}
               title={r.title}
-              diet={r.diets}
-              img={r.image}
+              diets={r.diets}
             />
           );
         })}

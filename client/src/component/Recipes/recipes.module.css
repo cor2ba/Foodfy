@@ -1,7 +1,11 @@
 .Card {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  align-items: center;
-  align-content: center;
-  gap: 40px;
+  background-image: url(../../imgs/backgroundhome.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 80px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }

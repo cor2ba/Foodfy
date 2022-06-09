@@ -8,7 +8,7 @@ const Landing = () => {
       <div className={a.Countainer}>
         <h1 className={a.Title}> FOOD APP </h1>
         <h3 className={a.Subtitle}> ❤ COOKING WITH LOVE FEEDS THE SOUL ❤</h3>
-        <Link to="/home">
+        <Link to="/recipes">
           <button className={a.Button}>ACCESS</button>
         </Link>
       </div>
