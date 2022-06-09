@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
       analyzedInstructions: {
         type: DataTypes.STRING,
       },
-      img: {
+      image: {
         type: DataTypes.STRING,
       },
     },

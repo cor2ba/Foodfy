@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "7661ba1eba1849c8a73379faef960252";
+const apiKey = "e495ee53f621493f8855565bea64f124";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -23,29 +23,35 @@ router.get("/recipes", async (req, res) => {
   arrDiets.map((a) => {
     Diet.findOrCreate({ where: { diet: a.diet } });
   });
+  try {
+    let recipes = await axios.get(urlRecipes),
+      recipesData = await recipes.data.results;
+    let mapedData = recipesData.map((f) => {
+      return {
+        image: f.image,
+        title: f.title,
+        diets: f.diets,
+      };
+    });
+    const tableBd = await Recipe.findAll({
+      include: {
+        model: Diet,
+        through: {
+          attributes: [],
+        },
+      },
+    });
+    let concat = tableBd.concat(mapedData);
+    res.status(200).send(concat);
+  } catch (error) {
+    res.status(404).send("Ooops 404 error");
+  }
+});
+
+router.get("/recipes", async (req, res) => {
   const { name } = req.query;
   try {
-    if (!name) {
-      let recipes = await axios.get(urlRecipes),
-        recipesData = await recipes.data.results;
-      let mapedData = recipesData.map((f) => {
-        return {
-          image: f.image,
-          title: f.title,
-          diets: f.diets,
-        };
-      });
-      const tableBd = await Recipe.findAll({
-        include: {
-          model: Diet,
-          through: {
-            attributes: [],
-          },
-        },
-      });
-      let concat = tableBd.concat(mapedData);
-      res.status(200).send(concat);
-    } else if (name) {
+    if (name) {
       let recipes = await axios.get(urlRecipes);
       let recipesData = await recipes.data.results;
       let filteredName = recipesData.filter((r) =>

@@ -1,8 +1,8 @@
 import React from "react";
-import a from "./recipe.module.css";
+import a from "./nav.module.css";
 import { Link } from "react-router-dom";
 
-const Recipe = () => {
+const NavBar = () => {
   return (
     <div className={a.Countainer}>
       <div className={a.CountainerNav}>
@@ -41,4 +41,4 @@ const Recipe = () => {
   );
 };
 
-export default Recipe;
+export default NavBar;

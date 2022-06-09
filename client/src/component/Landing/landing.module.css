@@ -19,7 +19,6 @@ body {
 }
 
 .Countainer {
-  gap: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,13 +44,17 @@ body {
 }
 
 .Subtitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid black;
   color: white;
   background: rgba(0, 0, 0, 0.762);
-  width: 300px;
-  text-align: center;
+  height: 50px;
+  width: 450px;
   border-radius: 10px;
   font-family: Cardo;
+  margin-bottom: 40px;
 }
 
 .Button {

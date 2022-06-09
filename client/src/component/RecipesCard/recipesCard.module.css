@@ -1,0 +1,23 @@
+.Countainer {
+  background-color: rgba(0, 0, 0, 0.47);
+  width: 300px;
+  height: 400px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://st.depositphotos.com/1695098/1207/i/600/depositphotos_12070017-stock-photo-menu-background.jpg");
+  background-position: center;
+}
+
+.Link {
+  text-decoration: none;
+}
+
+.Title {
+  color: aliceblue;
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}

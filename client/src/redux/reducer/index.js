@@ -17,17 +17,17 @@ const rootReducer = (state = initialState, action) => {
     case GET_ALL_RECIPES:
       return {
         ...state,
-        recipes: [...state.recipes, action.payload],
+        recipes: action.payload,
       };
     case CREATE_RECIPE:
       return {
         ...state,
-        recipe: action.payload,
+        recipe: [...state, action.payload],
       };
     case GET_DIETS:
       return {
         ...state,
-        diets: [...state.diets, action.payload],
+        diets: action.payload,
       };
     case GET_RECIPE_NAME:
       return {
