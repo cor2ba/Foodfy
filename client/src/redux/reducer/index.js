@@ -6,18 +6,18 @@ import {
   CREATE_RECIPE,
 } from "../actions";
 
-const State = {
+const initialState = {
   diets: [],
   recipes: [],
   recipe: {},
 };
 
-const rootReducer = (state = State, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_RECIPES:
       return {
         ...state,
-        recipes: action.payload,
+        recipes: [...state.recipes, action.payload],
       };
     case CREATE_RECIPE:
       return {
@@ -27,7 +27,7 @@ const rootReducer = (state = State, action) => {
     case GET_DIETS:
       return {
         ...state,
-        diets: action.payload,
+        diets: [...state.diets, action.payload],
       };
     case GET_RECIPE_NAME:
       return {
@@ -40,7 +40,7 @@ const rootReducer = (state = State, action) => {
         recipe: action.payload,
       };
     default:
-      return State;
+      return initialState;
   }
 };
 

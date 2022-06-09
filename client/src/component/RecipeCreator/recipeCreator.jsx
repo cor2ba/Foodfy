@@ -1,29 +1,35 @@
 import React from "react";
 import a from "./recipeCreator.module.css";
+import { Link } from "react-router-dom";
 
 const RecipeCreator = () => {
   return (
     <div className={a.Parent}>
       <div className={a.Countainer}>
         <h1 className={a.Title}>WELCOME TO RECIPE CREATOR</h1>
-        <div className={a.Form}>
-          <h3 className={a.Subtitle}>TITLE OF THE RECIPE :</h3>
+        <form className={a.Form}>
+          <label className={a.Subtitle}>TITLE OF THE RECIPE :</label>
           <input className={a.InputCreate} placeholder="TITLE..."></input>
-          <h3 className={a.Subtitle}>MAKE A SUMMARY OF THE RECIPE :</h3>
+          <label className={a.Subtitle}>MAKE A SUMMARY OF THE RECIPE :</label>
           <input className={a.InputCreate} placeholder="SUMMARY..."></input>
-          <h3 className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</h3>
-          <input
-            className={a.InputCreate}
-            placeholder="HEALTH SCORE..."
-          ></input>
-          <h3 className={a.Subtitle}>MAKE A STEP TO STEP OF THE RECIPE :</h3>
+          <label className={a.Subtitle}>
+            MAKE A STEP TO STEP OF THE RECIPE :
+          </label>
           <input
             className={a.InputCreate}
             placeholder="STEP TO STEP..."
           ></input>
-          <h3 className={a.Subtitle}>
+          <label className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</label>
+          <input
+            type="number"
+            placeholder="HEALTH SCORE..."
+            min={0}
+            max={100}
+            className={a.InputCreate}
+          ></input>
+          <label className={a.Subtitle}>
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
-          </h3>
+          </label>
           <select className={a.SelectDiet}>
             <option className={a.CreatorOption} value="">
               GLUTEN FREE
@@ -59,7 +65,17 @@ const RecipeCreator = () => {
               WHOLE 30
             </option>
           </select>
-        </div>
+          <button className={a.Submit} type="submit">
+            SEND
+          </button>
+          <Link to="/home">
+            <img
+              className={a.Img}
+              src="https://cdn-icons-png.flaticon.com/128/4885/4885344.png"
+              alt="Not Found"
+            ></img>
+          </Link>
+        </form>
       </div>
     </div>
   );

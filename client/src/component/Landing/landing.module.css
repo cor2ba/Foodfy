@@ -19,7 +19,7 @@ body {
 }
 
 .Countainer {
-  gap: 50px;
+  gap: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,10 +35,13 @@ body {
 .Title {
   border: 2px solid black;
   color: black;
-  background: linear-gradient(to right, red, green, yellow);
-  width: 200px;
+  background: linear-gradient(to right, green, white, red);
+  width: 140px;
   text-align: center;
   border-radius: 10px;
+  font-family: fantasy;
+  padding: 10px;
+  text-shadow: white 2px 2px 2px;
 }
 
 .Subtitle {
@@ -48,6 +51,7 @@ body {
   width: 300px;
   text-align: center;
   border-radius: 10px;
+  font-family: Cardo;
 }
 
 .Button {
@@ -59,4 +63,6 @@ body {
   text-align: center;
   font-size: 20px;
   border-radius: 10px;
+  cursor: crosshair;
+  font-family: Cardo;
 }

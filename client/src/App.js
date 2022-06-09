@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Route exact path="/" component={Landing} />
       <Route exact path="/home" component={Recipe} />
-      <Route exact path="/RecipeCreator" component={RecipeCreator} />
+      <Route exact path="/recipeCreator" component={RecipeCreator} />
     </div>
   );
 }
