@@ -1,0 +1,17 @@
+.CountainerNav {
+  background: linear-gradient(
+    to right,
+    rgb(0, 128, 0),
+    rgb(255, 255, 255),
+    rgb(255, 0, 0)
+  );
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+
+::placeholder {
+  color: white;
+}

@@ -38,3 +38,13 @@
   border-radius: 10px;
   text-shadow: white 2px 2px 2px;
 }
+
+.CountainerUl {
+  display: flex;
+  flex-direction: column;
+}
+
+.Ul {
+  display: flex;
+  flex-direction: column;
+}

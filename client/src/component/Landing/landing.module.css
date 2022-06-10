@@ -1,21 +1,14 @@
-body {
-  margin: 0;
-  background-image: url(../../imgs/backgroundfood.jpg);
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  height: 100%;
-}
-
 .Parent {
+  background-image: url(../../imgs/backgroundfood.jpg);
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 5%;
-  left: 5%;
-  right: 5%;
-  bottom: 5%;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
 }
 
 .Countainer {

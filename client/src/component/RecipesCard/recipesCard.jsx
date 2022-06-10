@@ -11,7 +11,9 @@ const RecipesCard = (props) => {
         <h1 className={a.Title}>{props.title}</h1>
       </Link>
       <h3 className={a.Subtitle}>DIETS:</h3>
-      <ul className={a.Ul}>{props.diets.join(", ")}</ul>
+      <ul className={a.CountainerUl}>
+        <li className={a.Ul}>{props.diets.join(", ")}</li>
+      </ul>
     </div>
   );
 };

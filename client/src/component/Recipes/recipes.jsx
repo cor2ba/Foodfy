@@ -3,7 +3,7 @@ import RecipesCard from "../RecipesCard/recipesCard";
 import { getAllRecipes } from "../../redux/actions";
 import { connect } from "react-redux";
 import a from "./recipes.module.css";
-import NavBar from "../NavBar/nav";
+import NavBar from "../NavBar/navBar";
 
 const Recipes = (props) => {
   useEffect(() => {

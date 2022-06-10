@@ -1,0 +1,9 @@
+.ButtonCreator {
+  background: linear-gradient(to right, green, white, red);
+  color: white;
+  border: 2px solid black;
+  height: 27px;
+  margin-right: 50px;
+  font-family: Cardo;
+  cursor: crosshair;
+}
