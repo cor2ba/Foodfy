@@ -28,7 +28,7 @@ export const getDiets = () => async (dispatch) => {
 };
 
 export const getDietsId = (id) => async (dispatch) => {
-  const response = await fetch(`http://localhost:3001/${id}`);
+  const response = await fetch(`http://localhost:3001/recipe/${id}`);
   const payload = await response.json();
   return dispatch({ type: GET_RECIPE_ID, payload });
 };

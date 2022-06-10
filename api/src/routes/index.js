@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "3e1e782da07242bfa0e366775f718b62";
+const apiKey = "6131045889f14110b599c7dde34ebb03";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -29,8 +29,10 @@ router.get("/recipes", async (req, res) => {
     let mapedData = recipesData.map((f) => {
       return {
         image: f.image,
+        id: f.id,
         title: f.title.toUpperCase(),
         diets: f.diets.map((d) => d.toUpperCase()),
+        // analyzedInstructions: f.analyzedInstructions["0"].steps,
       };
     });
     const tableBd = await Recipe.findAll({
@@ -48,7 +50,7 @@ router.get("/recipes", async (req, res) => {
   }
 });
 
-router.get("/recipes", async (req, res) => {
+router.get("/recipe", async (req, res) => {
   const { name } = req.query;
   try {
     if (name) {
@@ -59,9 +61,10 @@ router.get("/recipes", async (req, res) => {
       );
       let filtrados = (filteredName = filteredName.map((f) => {
         return {
+          id: id,
           image: f.image,
-          title: f.title,
-          diets: f.diets,
+          title: f.title.toUpperCase(),
+          diets: f.diets.map((d) => d.toUpperCase()),
         };
       }));
       res.status(200).json(filtrados);
@@ -71,7 +74,7 @@ router.get("/recipes", async (req, res) => {
   }
 });
 
-router.get("/recipes/:idReceta", async (req, res) => {
+router.get("/recipe/:idReceta", async (req, res) => {
   const { idReceta } = req.params;
   try {
     if (idReceta.length < 20) {
@@ -83,10 +86,12 @@ router.get("/recipes/:idReceta", async (req, res) => {
       let filtrados = (findedId = findedId.map((f) => {
         return {
           image: f.image,
+          id: f.id,
           title: f.title,
           diets: f.diets,
           healthScore: f.healthScore,
           summary: f.summary,
+          steps: f.analyzedInstructions[0].steps.map((a) => a.step),
         };
       }));
       res.status(200).send(filtrados);
@@ -100,8 +105,7 @@ router.get("/recipes/:idReceta", async (req, res) => {
 });
 
 router.post("/recipes", async (req, res) => {
-  const { title, summary, healthScore, analyzedInstructions, img, diet } =
-    req.body;
+  const { title, summary, healthScore, steps, img, diet } = req.body;
   try {
     if (!title || !summary) {
       res.status(404).send("It is mandatory to fill in your title and summary");
@@ -112,7 +116,7 @@ router.post("/recipes", async (req, res) => {
       title,
       summary,
       healthScore,
-      analyzedInstructions,
+      steps,
       img,
     });
     await obj.addDiets(diet);

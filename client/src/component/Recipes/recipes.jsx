@@ -19,6 +19,7 @@ const Recipes = (props) => {
           return (
             <RecipesCard
               key={r.id}
+              id={r.id}
               image={r.image}
               title={r.title}
               diets={r.diets}

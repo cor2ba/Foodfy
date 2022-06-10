@@ -68,7 +68,7 @@ const RecipeCreator = () => {
           <button className={a.Submit} type="submit">
             SEND
           </button>
-          <Link to="/home">
+          <Link to="/recipes">
             <img
               className={a.Img}
               src="https://cdn-icons-png.flaticon.com/128/4885/4885344.png"
