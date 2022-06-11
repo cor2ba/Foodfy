@@ -32,7 +32,6 @@ router.get("/recipes", async (req, res) => {
         id: f.id,
         title: f.title.toUpperCase(),
         diets: f.diets.map((d) => d.toUpperCase()),
-        // analyzedInstructions: f.analyzedInstructions["0"].steps,
       };
     });
     const tableBd = await Recipe.findAll({
