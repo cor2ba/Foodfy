@@ -3,6 +3,7 @@ import Landing from "./component/Landing/landing";
 import RecipeCreator from "./component/RecipeCreator/recipeCreator";
 import Recipes from "./component/Recipes/recipes";
 import RecipeDetail from "./component/RecipeDetail/recipeDetail";
+import "./App.css";
 
 function App() {
   return (

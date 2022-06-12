@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDietsId } from "../../redux/actions";
 import a from "./recipeDetail.module.css";
+import img from "../../imgs/backicon.png";
 
 const RecipeDetail = () => {
   const recipe = useSelector((state) => state.recipe);
@@ -17,11 +18,7 @@ const RecipeDetail = () => {
   return (
     <div className={a.Parent}>
       <Link to="/recipes">
-        <img
-          className={a.Image}
-          src="https://cdn-icons-png.flaticon.com/128/4885/4885344.png"
-          alt="Not Found"
-        ></img>
+        <img className={a.Image} src={img} alt="Not Found"></img>
       </Link>
       <div className={a.Countainer}>
         {recipe?.map((r) => {

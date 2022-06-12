@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import a from "./searchBar.module.css";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { getRecipeName } from "../../redux/actions";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+
+  const handleInputName = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getRecipeName(name));
+  };
   return (
     <div>
       <input
-        className={a.SeachRecipes}
+        className={a.InputRecipes}
         type="text"
-        name="name"
         placeholder="SEARCH RECIPE..."
+        onChange={(e) => handleInputName(e)}
       ></input>
-      <button className={a.Sumbit} type="sumbit">
+      <button
+        className={a.Sumbit}
+        type="sumbit"
+        onClick={(e) => handleSubmit(e)}
+      >
         SEND
       </button>
     </div>

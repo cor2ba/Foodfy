@@ -1,6 +1,7 @@
 import React from "react";
 import a from "./recipeCreator.module.css";
 import { Link } from "react-router-dom";
+import img from "../../imgs/backicon.png";
 
 const RecipeCreator = () => {
   return (
@@ -31,49 +32,23 @@ const RecipeCreator = () => {
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
           </label>
           <select className={a.SelectDiet}>
-            <option className={a.CreatorOption} value="">
-              GLUTEN FREE
-            </option>
-            <option className={a.CreatorOption} value="">
-              KETOGENIC
-            </option>
-            <option className={a.CreatorOption} value="">
-              LACTO VEGETARIAN
-            </option>
-            <option className={a.CreatorOption} value="">
-              OVO VEGETARIAN
-            </option>
-            <option className={a.CreatorOption} value="">
-              KETOGENIC
-            </option>
-            <option className={a.CreatorOption} value="">
-              VEGAN
-            </option>
-            <option className={a.CreatorOption} value="">
-              PESCETARIAN
-            </option>
-            <option className={a.CreatorOption} value="">
-              PALEO
-            </option>
-            <option className={a.CreatorOption} value="">
-              PRIMAL
-            </option>
-            <option className={a.CreatorOption} value="">
-              LOW FODMAP
-            </option>
-            <option className={a.CreatorOption} value="">
-              WHOLE 30
-            </option>
+            <option className={a.CreatorOption}>GLUTEN FREE</option>
+            <option className={a.CreatorOption}>KETOGENIC</option>
+            <option className={a.CreatorOption}>LACTO VEGETARIAN</option>
+            <option className={a.CreatorOption}>OVO VEGETARIAN</option>
+            <option className={a.CreatorOption}>KETOGENIC</option>
+            <option className={a.CreatorOption}>VEGAN</option>
+            <option className={a.CreatorOption}>PESCETARIAN</option>
+            <option className={a.CreatorOption}>PALEO</option>
+            <option className={a.CreatorOption}>PRIMAL</option>
+            <option className={a.CreatorOption}>LOW FODMAP</option>
+            <option className={a.CreatorOption}>WHOLE 30</option>
           </select>
           <button className={a.Submit} type="submit">
             SEND
           </button>
           <Link to="/recipes">
-            <img
-              className={a.Img}
-              src="https://cdn-icons-png.flaticon.com/128/4885/4885344.png"
-              alt="Not Found"
-            ></img>
+            <img className={a.Img} src={img} alt="Not Found"></img>
           </Link>
         </form>
       </div>

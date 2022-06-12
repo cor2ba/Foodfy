@@ -1,8 +1,9 @@
 .Parent {
   background-size: cover;
   background-attachment: fixed;
-  background-image: url("https://i.pinimg.com/originals/21/4d/6e/214d6eab8bf26e0070d9614846096b18.png");
+  background-image: url(../../imgs/backgrounddetailpng.png);
   padding-bottom: 60px;
+  min-height: 100vh;
 }
 
 .Countainer {

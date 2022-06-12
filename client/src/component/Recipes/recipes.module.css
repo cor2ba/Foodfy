@@ -1,16 +1,14 @@
-body {
-  margin: 0px;
-  padding: 0px;
-}
-
 .Card {
   background-image: url(../../imgs/backgroundhome.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 80px;
   padding-top: 60px;
   padding-bottom: 60px;
+  margin: 0px;
 }

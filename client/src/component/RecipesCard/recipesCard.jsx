@@ -6,11 +6,12 @@ const RecipesCard = (props) => {
   return (
     <div className={a.Countainer}>
       <img className={a.Img} src={props.image} alt="NOT FOUND"></img>
-      <Link className={a.Link} to={`/recipes/${props.id}`}>
-        <h1 className={a.Title}>{props.title}</h1>
-      </Link>
+      <h1 className={a.Title}>{props.title}</h1>
       <h3 className={a.Subtitle}>DIETS:</h3>
       <ul className={a.Ul}>{props.diets}</ul>
+      <Link className={a.Link} to={`/recipes/${props.id}`}>
+        <button className={a.Details}>DETAILS</button>
+      </Link>
     </div>
   );
 };

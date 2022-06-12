@@ -10,7 +10,7 @@ export const getAllRecipes = () => async (dispatch) => {
   return dispatch({ type: GET_ALL_RECIPES, payload });
 };
 export const getRecipeName = (name) => async (dispatch) => {
-  const response = await fetch(`http://localhost:3001/recipes?name=${name}`);
+  const response = await fetch(`http://localhost:3001/recipe?name=${name}`);
   const payload = await response.json();
   return dispatch({ type: GET_RECIPE_NAME, payload });
 };
