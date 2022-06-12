@@ -1,49 +1,119 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import a from "./recipeCreator.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import img from "../../imgs/backicon.png";
+import { useDispatch, useSelector } from "react-redux";
+import { createRecipe, getDiets } from "../../redux/actions";
 
 const RecipeCreator = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const diets = useSelector((state) => state.diets);
+
+  const [input, setInput] = useState({
+    title: "",
+    summary: "",
+    healthScore: "",
+    steps: "",
+    image: "",
+    diet: [],
+  });
+
+  const handleInputChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    console.log(input);
+  };
+
+  const handleSelect = (e) => {
+    setInput({
+      ...input,
+      diet: [...input.diet, e.target.value],
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault(e);
+    console.log(input);
+    dispatch(createRecipe(input));
+    alert("¡RECIPE CREATED!");
+    setInput({
+      title: "",
+      summary: "",
+      healthScore: "",
+      steps: "",
+      image: "",
+      diet: [],
+    });
+    history.push("/recipes");
+  };
+
+  useEffect(() => {
+    dispatch(getDiets());
+  }, []);
+
   return (
     <div className={a.Parent}>
       <div className={a.Countainer}>
         <h1 className={a.Title}>WELCOME TO RECIPE CREATOR</h1>
-        <form className={a.Form}>
+        <form className={a.Form} onSubmit={(e) => handleSubmit(e)}>
           <label className={a.Subtitle}>TITLE OF THE RECIPE :</label>
-          <input className={a.InputCreate} placeholder="TITLE..."></input>
+          <input
+            type="text"
+            className={a.InputCreate}
+            placeholder="TITLE..."
+            name="title"
+            input={input.title}
+            onChange={(e) => handleInputChange(e)}
+          ></input>
           <label className={a.Subtitle}>MAKE A SUMMARY OF THE RECIPE :</label>
-          <input className={a.InputCreate} placeholder="SUMMARY..."></input>
+          <input
+            type="text"
+            className={a.InputCreate}
+            placeholder="SUMMARY..."
+            name="summary"
+            input={input.summary}
+          ></input>
           <label className={a.Subtitle}>
             MAKE A STEP TO STEP OF THE RECIPE :
           </label>
           <input
+            type="text"
             className={a.InputCreate}
             placeholder="STEP TO STEP..."
+            name="analyzedInstructions"
+            input={input.analyzedInstructions}
           ></input>
           <label className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</label>
           <input
-            type="number"
+            type="text"
             placeholder="HEALTH SCORE..."
             min={0}
             max={100}
             className={a.InputCreate}
+            name="healthScore"
+            input={input.health}
+          ></input>
+          <input
+            type="text"
+            placeholder="IMAGE..."
+            className={a.InputCreate}
+            name="image"
+            input={input.image}
           ></input>
           <label className={a.Subtitle}>
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
           </label>
-          <select className={a.SelectDiet}>
-            <option className={a.CreatorOption}>GLUTEN FREE</option>
-            <option className={a.CreatorOption}>KETOGENIC</option>
-            <option className={a.CreatorOption}>LACTO VEGETARIAN</option>
-            <option className={a.CreatorOption}>OVO VEGETARIAN</option>
-            <option className={a.CreatorOption}>KETOGENIC</option>
-            <option className={a.CreatorOption}>VEGAN</option>
-            <option className={a.CreatorOption}>PESCETARIAN</option>
-            <option className={a.CreatorOption}>PALEO</option>
-            <option className={a.CreatorOption}>PRIMAL</option>
-            <option className={a.CreatorOption}>LOW FODMAP</option>
-            <option className={a.CreatorOption}>WHOLE 30</option>
+          <select onChange={(e) => handleSelect(e)}>
+            {diets.map((d) => (
+              <option value={d.diets}>{d.diets}</option>
+            ))}
           </select>
+          <ul>
+            <li>{input.diet.map((d) => d + " ,")}</li>
+          </ul>
           <button className={a.Submit} type="submit">
             SEND
           </button>

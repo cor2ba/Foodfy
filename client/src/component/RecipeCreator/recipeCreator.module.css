@@ -22,6 +22,17 @@
   border: 3px solid black;
 }
 
+.Select {
+  background-color: rgba(0, 0, 0, 0.762);
+  text-align: center;
+  color: white;
+  width: 200px;
+  border: 2px solid black;
+  height: 23px;
+  border-radius: 10px;
+  font-family: Cardo;
+}
+
 .Title {
   border: 2px solid black;
   color: rgba(0, 0, 0, 0.762);

@@ -15,10 +15,10 @@ export const getRecipeName = (name) => async (dispatch) => {
   return dispatch({ type: GET_RECIPE_NAME, payload });
 };
 
-export const createRecipe = () => async (dispatch) => {
-  const response = await fetch("http://localhost:3001/recipes");
+export const createRecipe = (body) => async () => {
+  const response = await fetch("http://localhost:3001/recipes", body);
   const payload = await response.json();
-  return dispatch({ type: CREATE_RECIPE, payload });
+  return payload;
 };
 
 export const getDiets = () => async (dispatch) => {

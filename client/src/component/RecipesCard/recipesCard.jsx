@@ -8,7 +8,9 @@ const RecipesCard = (props) => {
       <img className={a.Img} src={props.image} alt="NOT FOUND"></img>
       <h1 className={a.Title}>{props.title}</h1>
       <h3 className={a.Subtitle}>DIETS:</h3>
-      <ul className={a.Ul}>{props.diets}</ul>
+      <ul>
+        <li className={a.Ul}>{props.diets}</li>
+      </ul>
       <Link className={a.Link} to={`/recipes/${props.id}`}>
         <button className={a.Details}>DETAILS</button>
       </Link>

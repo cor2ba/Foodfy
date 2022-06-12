@@ -11,8 +11,8 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      diet: {
-        type: DataTypes.ENUM({
+      diets: {
+        type: DataTypes.STRING({
           defaultValue: "Other",
           values: [
             "Gluten Free",
