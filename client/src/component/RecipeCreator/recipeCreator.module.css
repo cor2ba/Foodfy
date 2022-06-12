@@ -93,7 +93,7 @@
   border-radius: 50px;
   border-radius: 100px;
   background-size: 50px;
-  cursor: crosshair;
+  cursor: inherit;
 }
 
 ::placeholder {

@@ -13,6 +13,11 @@
   text-decoration: none;
   font-family: fantasy;
   padding: 10px;
-  cursor: crosshair;
+  cursor: inherit;
   text-shadow: white 2px 2px 2px;
+}
+
+.Title:hover {
+  text-shadow: black 1px 1px 1px;
+  color: white;
 }

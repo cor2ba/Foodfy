@@ -4,6 +4,7 @@
   border: 2px solid black;
   height: 20px;
   font-family: Cardo;
+  cursor: inherit;
 }
 
 .Sumbit {
@@ -17,4 +18,10 @@
     rgb(255, 0, 0)
   );
   text-shadow: white 1px 1px 1px;
+  cursor: inherit;
+}
+
+.Sumbit:hover {
+  text-shadow: black 1px 1px 1px;
+  color: white;
 }

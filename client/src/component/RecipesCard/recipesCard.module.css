@@ -23,6 +23,11 @@
   text-shadow: white 2px 2px 2px;
   margin: 8px;
   background: linear-gradient(to right, green, white, red);
+  cursor: inherit;
+}
+
+.Details:hover {
+  color: white;
 }
 
 .Img {
