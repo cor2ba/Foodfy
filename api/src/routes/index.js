@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "bb65d4c6518c48b283d192be80665e29";
+const apiKey = "47738ae486ec4ed8962ccaf8b1d1c357";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -27,6 +27,14 @@ router.get("/recipes", async (req, res) => {
     let recipes = await axios.get(urlRecipes),
       recipesData = await recipes.data.results;
     let mapedData = recipesData.map((f) => {
+      if (f.diets.length === 0) {
+        return {
+          image: f.image,
+          id: f.id,
+          title: f.title.toUpperCase(),
+          diets: "DON´T DEFINED",
+        };
+      }
       return {
         image: f.image,
         id: f.id,
@@ -52,22 +60,19 @@ router.get("/recipes", async (req, res) => {
 router.get("/recipe", async (req, res) => {
   const { name } = req.query;
   try {
-    if (name) {
-      let recipes = await axios.get(urlRecipes);
-      let recipesData = await recipes.data.results;
-      let filteredName = recipesData.filter((r) =>
-        r.title.toLowerCase().includes(name.toLowerCase())
-      );
-      let filtrados = (filteredName = filteredName.map((f) => {
-        return {
-          id: id,
-          image: f.image,
-          title: f.title.toUpperCase(),
-          diets: f.diets.map((d) => d.toUpperCase()),
-        };
-      }));
-      res.status(200).json(filtrados);
-    }
+    let recipes = await axios.get(urlRecipes);
+    let recipesData = await recipes.data.results;
+    let filteredName = recipesData.filter((r) =>
+      r.title.toLowerCase().includes(name.toLowerCase())
+    );
+    let filtrados = (filteredName = filteredName.map((f) => {
+      return {
+        image: f.image,
+        title: f.title.toUpperCase(),
+        diets: f.diets.map((d) => d.toUpperCase()),
+      };
+    }));
+    res.status(200).json(filtrados);
   } catch (error) {
     res.status(404).send("Ooops 404 error");
   }
@@ -83,13 +88,24 @@ router.get("/recipe/:idReceta", async (req, res) => {
         (r) => Number(r.id) === Number(idReceta)
       );
       let filtrados = (findedId = findedId.map((f) => {
+        if (f.analyzedInstructions.length === 0) {
+          return {
+            image: f.image,
+            id: f.id,
+            title: f.title,
+            diets: f.diets,
+            healthScore: f.healthScore,
+            summary: f.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""),
+            steps: "Haven´t steps",
+          };
+        }
         return {
           image: f.image,
           id: f.id,
           title: f.title,
           diets: f.diets,
           healthScore: f.healthScore,
-          summary: f.summary,
+          summary: f.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""),
           steps: f.analyzedInstructions[0].steps.map((a) => a.step),
         };
       }));

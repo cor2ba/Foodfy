@@ -1,15 +1,16 @@
 .Countainer {
   width: 300px;
   height: 500px;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(to right, green, white, red);
+  background-image: url(../../imgs/backgroundtomatos.jpeg);
   background-position: center;
   border: 2px solid black;
+  border-radius: 30px;
 }
 
 .Img {
   max-height: 200px;
+  min-width: 300px;
+  border-radius: 26px;
 }
 
 .Diets {
@@ -30,22 +31,29 @@
   padding: 5px;
   text-shadow: white 2px 2px 2px;
   margin: 8px;
+  background: linear-gradient(to right, green, white, red);
 }
 
 .Subtitle {
-  color: black;
+  color: white;
   font-size: 20px;
   text-align: center;
   border-radius: 10px;
-  text-shadow: white 2px 2px 2px;
-}
-
-.CountainerUl {
-  display: flex;
-  flex-direction: column;
+  text-shadow: black 2px 2px 2px;
+  background-color: rgba(0, 0, 0, 0.535);
+  margin: 8px;
+  font-family: Cardo;
 }
 
 .Ul {
   display: flex;
   flex-direction: column;
+  margin: 8px;
+  color: white;
+  font-size: 13px;
+  list-style: none;
+  text-shadow: black 2px 2px 2px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.535);
+  font-family: Cardo;
 }

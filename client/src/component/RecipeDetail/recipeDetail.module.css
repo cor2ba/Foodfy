@@ -1,0 +1,29 @@
+.Parent {
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url("https://i.pinimg.com/originals/21/4d/6e/214d6eab8bf26e0070d9614846096b18.png");
+  padding-bottom: 60px;
+}
+
+.Countainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+  bottom: 10%;
+}
+
+.Image {
+  min-width: 60px;
+  max-width: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  background-color: white;
+  border-radius: 50px;
+  border-radius: 100px;
+  background-size: 50px;
+  cursor: crosshair;
+  padding: 5px;
+}

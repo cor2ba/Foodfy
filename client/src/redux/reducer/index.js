@@ -9,7 +9,7 @@ import {
 const initialState = {
   diets: [],
   recipes: [],
-  recipe: {},
+  recipe: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -32,7 +32,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_RECIPE_NAME:
       return {
         ...state,
-        recipe: action.payload,
+        recipes: action.payload,
       };
     case GET_RECIPE_ID:
       return {
