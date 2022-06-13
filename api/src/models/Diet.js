@@ -6,28 +6,9 @@ module.exports = (sequelize) => {
   sequelize.define(
     "diet",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
       diets: {
-        type: DataTypes.STRING({
-          defaultValue: "Other",
-          values: [
-            "Gluten Free",
-            "Ketogenic",
-            "Vegetarian",
-            "Lacto Vegetarian",
-            "Ovo Vegetarian",
-            "Vegan",
-            "Pescetarian",
-            "Paleo",
-            "Primal",
-            "Low FODMAP",
-            "Whole30",
-          ],
-        }),
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     { timestamps: false }

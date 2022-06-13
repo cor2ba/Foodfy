@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
       title: {
         type: DataTypes.STRING,
@@ -21,12 +22,15 @@ module.exports = (sequelize) => {
       },
       healthScore: {
         type: DataTypes.STRING,
+        allowNull: true,
       },
       steps: {
         type: DataTypes.STRING,
+        allowNull: true,
       },
       image: {
         type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     { timestamps: false }

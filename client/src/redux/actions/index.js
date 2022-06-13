@@ -15,8 +15,8 @@ export const getRecipeName = (name) => async (dispatch) => {
   return dispatch({ type: GET_RECIPE_NAME, payload });
 };
 
-export const createRecipe = (body) => async () => {
-  const response = await fetch("http://localhost:3001/recipes", body);
+export const createRecipe = (input) => async () => {
+  const response = await fetch("http://localhost:3001/recipes", input);
   const payload = await response.json();
   return payload;
 };

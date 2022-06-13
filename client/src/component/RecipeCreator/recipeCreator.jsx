@@ -24,7 +24,6 @@ const RecipeCreator = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
   };
 
   const handleSelect = (e) => {
@@ -34,9 +33,12 @@ const RecipeCreator = () => {
     });
   };
 
+  useEffect(() => {
+    dispatch(getDiets());
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault(e);
-    console.log(input);
     dispatch(createRecipe(input));
     alert("¡RECIPE CREATED!");
     setInput({
@@ -49,10 +51,6 @@ const RecipeCreator = () => {
     });
     history.push("/recipes");
   };
-
-  useEffect(() => {
-    dispatch(getDiets());
-  }, []);
 
   return (
     <div className={a.Parent}>
@@ -75,6 +73,7 @@ const RecipeCreator = () => {
             placeholder="SUMMARY..."
             name="summary"
             input={input.summary}
+            onChange={(e) => handleInputChange(e)}
           ></input>
           <label className={a.Subtitle}>
             MAKE A STEP TO STEP OF THE RECIPE :
@@ -83,36 +82,40 @@ const RecipeCreator = () => {
             type="text"
             className={a.InputCreate}
             placeholder="STEP TO STEP..."
-            name="analyzedInstructions"
-            input={input.analyzedInstructions}
+            name="steps"
+            input={input.steps}
+            onChange={(e) => handleInputChange(e)}
           ></input>
           <label className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</label>
           <input
             type="text"
             placeholder="HEALTH SCORE..."
-            min={0}
-            max={100}
             className={a.InputCreate}
             name="healthScore"
-            input={input.health}
+            input={input.healthScore}
+            onChange={(e) => handleInputChange(e)}
           ></input>
+          <label className={a.Subtitle}>CHOOSE A IMAGE :</label>
           <input
             type="text"
             placeholder="IMAGE..."
             className={a.InputCreate}
             name="image"
             input={input.image}
+            onChange={(e) => handleInputChange(e)}
           ></input>
           <label className={a.Subtitle}>
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
           </label>
-          <select onChange={(e) => handleSelect(e)}>
+          <select className={a.Select} onChange={(e) => handleSelect(e)}>
             {diets.map((d) => (
-              <option value={d.diets}>{d.diets}</option>
+              <option value={d.diets}>{d.diets.toUpperCase()}</option>
             ))}
           </select>
           <ul>
-            <li>{input.diet.map((d) => d + " ,")}</li>
+            <li className={a.List}>
+              {input.diet.map((d) => d.toUpperCase() + " ,")}
+            </li>
           </ul>
           <button className={a.Submit} type="submit">
             SEND

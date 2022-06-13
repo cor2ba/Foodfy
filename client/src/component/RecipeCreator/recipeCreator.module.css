@@ -107,6 +107,10 @@
   cursor: inherit;
 }
 
+.List {
+  list-style: none;
+}
+
 ::placeholder {
   color: white;
 }

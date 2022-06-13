@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDiets } from "../../redux/actions";
 import a from "./selectDiet.module.css";
 
 const SelectDiet = () => {
+  const dispatch = useDispatch();
+  const diets = useSelector((state) => state.diets);
+  useEffect(() => {
+    dispatch(getDiets());
+  }, []);
+
   return (
     <div>
       <select className={a.DietOrderSelect}>
-        <option>ALL DIETS...</option>
-        <option>KETOGENIC</option>
-        <option>VEGETARIAN</option>
-        <option>LACTO VEGETARIAN</option>
-        <option>OVO VEGETARIAN</option>
-        <option>VEGAN</option>
-        <option>PESCETARIAN</option>
-        <option>PALEO</option>
-        <option>PRIMAL</option>
-        <option>LOW FODMAP</option>
-        <option>WHOLE 30</option>
+        {diets.map((d) => (
+          <option value={d.diets}>{d.diets.toUpperCase()}</option>
+        ))}
       </select>
     </div>
   );

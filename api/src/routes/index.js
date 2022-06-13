@@ -1,29 +1,12 @@
 const { Router } = require("express");
 const axios = require("axios");
-const API_KEY = process.env;
-const apiKey = "06f9b29e561e42bcad48b3a63859a5ff";
+const apiKey = "17bd9a8daa404e0cb700b83061096a68";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
 const router = Router();
 
 router.get("/recipes", async (req, res) => {
-  let arrDiets = [
-    { diets: "Gluten Free" },
-    { diets: "Lacto Vegetarian" },
-    { diets: "Ketogenic" },
-    { diets: "Vegetarian" },
-    { diets: "Ovo Vegetarian" },
-    { diets: "Vegan" },
-    { diets: "Pescetarian" },
-    { diets: "Paleo" },
-    { diets: "Primal" },
-    { diets: "Low FODMAP" },
-    { diets: "Whole30" },
-  ];
-  arrDiets.map((a) => {
-    Diet.findOrCreate({ where: { diets: a.diets } });
-  });
   try {
     let recipes = await axios.get(urlRecipes),
       recipesData = await recipes.data.results;
@@ -46,6 +29,7 @@ router.get("/recipes", async (req, res) => {
     const tableBd = await Recipe.findAll({
       include: {
         model: Diet,
+        attributes: ["diets"],
         through: {
           attributes: [],
         },
@@ -82,7 +66,7 @@ router.get("/recipe", async (req, res) => {
 router.get("/recipe/:idReceta", async (req, res) => {
   const { idReceta } = req.params;
   try {
-    if (idReceta.length < 20) {
+    if (idReceta.length < 10) {
       let recipes = await axios.get(urlRecipes),
         recipesData = await recipes.data.results;
       let findedId = recipesData.filter(
@@ -111,7 +95,7 @@ router.get("/recipe/:idReceta", async (req, res) => {
         };
       }));
       res.status(200).send(filtrados);
-    } else if (idReceta.length > 20) {
+    } else if (idReceta.length > 25) {
       const recipe = await Recipe.findOne({ where: { id: idReceta } });
       res.status(200).send(recipe);
     }
@@ -121,7 +105,7 @@ router.get("/recipe/:idReceta", async (req, res) => {
 });
 
 router.post("/recipes", async (req, res) => {
-  const { title, summary, healthScore, steps, image, diet } = req.body;
+  const { title, summary, healthScore, steps, image, diets } = req.body;
   try {
     if (!title || !summary) {
       res.status(404).send("It is mandatory to fill in your title and summary");
@@ -135,7 +119,10 @@ router.post("/recipes", async (req, res) => {
       steps,
       image,
     });
-    await obj.addDiets(diet);
+    let dietDb = await Diet.findAll({
+      where: { diets: diets },
+    });
+    await obj.addDiets(dietDb);
     return res.status(200).send({ confirmacion: `Recipe created` });
   } catch (error) {
     res.status(404).send("Ooops 404 error");
@@ -143,6 +130,22 @@ router.post("/recipes", async (req, res) => {
 });
 
 router.get("/diets", async (req, res) => {
+  let arrDiets = [
+    { diets: "Gluten Free" },
+    { diets: "Lacto Vegetarian" },
+    { diets: "Ketogenic" },
+    { diets: "Vegetarian" },
+    { diets: "Ovo Vegetarian" },
+    { diets: "Vegan" },
+    { diets: "Pescetarian" },
+    { diets: "Paleo" },
+    { diets: "Primal" },
+    { diets: "Low FODMAP" },
+    { diets: "Whole30" },
+  ];
+  arrDiets.map((a) => {
+    Diet.findOrCreate({ where: { diets: a.diets } });
+  });
   try {
     let diets = await Diet.findAll();
     res.status(200).send(diets);

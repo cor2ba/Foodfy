@@ -9,6 +9,7 @@ import {
 const initialState = {
   diets: [],
   recipes: [],
+  creates: [],
   recipe: [],
 };
 
@@ -22,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_RECIPE:
       return {
         ...state,
+        creates: action.payload,
       };
     case GET_DIETS:
       return {
