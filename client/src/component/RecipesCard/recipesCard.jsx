@@ -6,9 +6,17 @@ const RecipesCard = (props) => {
   return (
     <div className={a.Countainer}>
       <img className={a.Img} src={props.image} alt="NOT FOUND"></img>
-      <h1 className={a.Title}>{props.title}</h1>
+      <h1 className={a.Title}>{props.title.toUpperCase()}</h1>
       <h3 className={a.Subtitle}>DIETS:</h3>
-      <h4 className={a.Ul}>{props.diets}</h4>
+      <ul className={a.List}>
+        {props.diets?.map((d) => {
+          return (
+            <li key={d} className={a.Ul}>
+              {d.toUpperCase()}
+            </li>
+          );
+        })}
+      </ul>
       <Link className={a.Link} to={`/recipes/${props.id}`}>
         <button className={a.Details}>DETAILS</button>
       </Link>

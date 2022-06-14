@@ -9,7 +9,7 @@ import {
 const initialState = {
   diets: [],
   recipes: [],
-  creates: [],
+  creates: {},
   recipe: [],
 };
 

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "17bd9a8daa404e0cb700b83061096a68";
+const apiKey = "a0da94dc60ce4cf380713f875c53c554";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -11,19 +11,15 @@ router.get("/recipes", async (req, res) => {
     let recipes = await axios.get(urlRecipes),
       recipesData = await recipes.data.results;
     let mapedData = recipesData.map((f) => {
-      if (f.diets.length === 0) {
-        return {
-          image: f.image,
-          id: f.id,
-          title: f.title.toUpperCase(),
-          diets: "DON´T DEFINED",
-        };
-      }
       return {
         image: f.image,
         id: f.id,
         title: f.title.toUpperCase(),
-        diets: f.diets.map((d) => d.toUpperCase()),
+        diets: f.diets?.map((diets) => {
+          return {
+            diets,
+          };
+        }),
       };
     });
     const tableBd = await Recipe.findAll({
@@ -106,6 +102,7 @@ router.get("/recipe/:idReceta", async (req, res) => {
 
 router.post("/recipes", async (req, res) => {
   const { title, summary, healthScore, steps, image, diets } = req.body;
+  console.log(title, summary, healthScore, steps, image, diets);
   try {
     if (!title || !summary) {
       res.status(404).send("It is mandatory to fill in your title and summary");
@@ -119,13 +116,15 @@ router.post("/recipes", async (req, res) => {
       steps,
       image,
     });
-    let dietDb = await Diet.findAll({
-      where: { diets: diets },
-    });
-    await obj.addDiets(dietDb);
+    for (let i = 0; i < diets.length; i++) {
+      let promise = await Diet.findOne({
+        where: { diets: diets[i] },
+      });
+      await obj.addDiets(promise);
+    }
     return res.status(200).send({ confirmacion: `Recipe created` });
   } catch (error) {
-    res.status(404).send("Ooops 404 error");
+    res.status(404).send(error);
   }
 });
 
@@ -141,7 +140,7 @@ router.get("/diets", async (req, res) => {
     { diets: "Paleo" },
     { diets: "Primal" },
     { diets: "Low FODMAP" },
-    { diets: "Whole30" },
+    { diets: "Whole 30" },
   ];
   arrDiets.map((a) => {
     Diet.findOrCreate({ where: { diets: a.diets } });

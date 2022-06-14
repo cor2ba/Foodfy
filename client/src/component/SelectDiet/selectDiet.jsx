@@ -8,13 +8,15 @@ const SelectDiet = () => {
   const diets = useSelector((state) => state.diets);
   useEffect(() => {
     dispatch(getDiets());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       <select className={a.DietOrderSelect}>
         {diets.map((d) => (
-          <option value={d.diets}>{d.diets.toUpperCase()}</option>
+          <option key={d.id} value={d.diets}>
+            {d.diets.toUpperCase()}
+          </option>
         ))}
       </select>
     </div>

@@ -8,7 +8,7 @@ import { createRecipe, getDiets } from "../../redux/actions";
 const RecipeCreator = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const diets = useSelector((state) => state.diets);
+  const Diets = useSelector((state) => state.diets);
 
   const [input, setInput] = useState({
     title: "",
@@ -16,7 +16,7 @@ const RecipeCreator = () => {
     healthScore: "",
     steps: "",
     image: "",
-    diet: [],
+    diets: [],
   });
 
   const handleInputChange = (e) => {
@@ -24,18 +24,20 @@ const RecipeCreator = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    console.log(input);
   };
 
   const handleSelect = (e) => {
     setInput({
       ...input,
-      diet: [...input.diet, e.target.value],
+      diets: [...input.diets, e.target.value],
     });
+    console.log(input);
   };
 
   useEffect(() => {
     dispatch(getDiets());
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
@@ -47,7 +49,7 @@ const RecipeCreator = () => {
       healthScore: "",
       steps: "",
       image: "",
-      diet: [],
+      diets: [],
     });
     history.push("/recipes");
   };
@@ -108,13 +110,13 @@ const RecipeCreator = () => {
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
           </label>
           <select className={a.Select} onChange={(e) => handleSelect(e)}>
-            {diets.map((d) => (
+            {Diets.map((d) => (
               <option value={d.diets}>{d.diets.toUpperCase()}</option>
             ))}
           </select>
           <ul>
             <li className={a.List}>
-              {input.diet.map((d) => d.toUpperCase() + " ,")}
+              {input.diets.map((d) => d.toUpperCase() + " ,")}
             </li>
           </ul>
           <button className={a.Submit} type="submit">

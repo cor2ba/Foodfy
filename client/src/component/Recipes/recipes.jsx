@@ -1,28 +1,31 @@
 import React, { useEffect } from "react";
 import RecipesCard from "../RecipesCard/recipesCard";
 import { getAllRecipes } from "../../redux/actions";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import a from "./recipes.module.css";
 import NavBar from "../NavBar/navBar";
 
-const Recipes = (props) => {
+const Recipes = () => {
+  const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes);
   useEffect(() => {
-    props.getAllRecipes();
-  }, []);
+    dispatch(getAllRecipes());
+  }, [dispatch]);
+
   return (
     <div className={a.Countainer}>
       <div className={a.NavBar}>
         <NavBar />
       </div>
       <div className={a.Card}>
-        {props.recipes?.map((r) => {
+        {recipes?.map((r) => {
           return (
             <RecipesCard
               key={r.id}
               id={r.id}
               image={r.image}
               title={r.title}
-              diets={r.diets}
+              diets={r.diets.map((d) => d.diets)}
             />
           );
         })}
@@ -31,14 +34,14 @@ const Recipes = (props) => {
   );
 };
 
-export const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes,
-  };
-};
+// export const mapStateToProps = (state) => {
+//   return {
+//     recipes: state.recipes,
+//   };
+// };
 
-export function mapDispatchToProps(dispatch) {
-  return { getAllRecipes: () => dispatch(getAllRecipes()) };
-}
+// export function mapDispatchToProps(dispatch) {
+//   return { getAllRecipes: () => dispatch(getAllRecipes()) };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+export default Recipes;
