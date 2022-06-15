@@ -1,0 +1,25 @@
+.Nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.List {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0px;
+  padding: 0px;
+  cursor: inherit;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+
+.ListChildrens {
+  list-style: none;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+  width: 30px;
+}

@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
+import React from "react";
 import a from "./selectAlphabeticalOrder.module.css";
-import { useSelector } from "react";
-import { useDispatch } from "react-redux";
-import { getAllRecipes } from "../../redux/actions";
+// import { useDispatch, useSelector } from "react-redux";
 
 const SelectAlphabeticalOrder = () => {
   // const recipes = useSelector((state) => state.recipes);
   // const dispatch = useDispatch();
+  // console.log(recipes);
   // const handleAscendancy = () => {
-  //   recipes.sort(function (a, b) {
-  //     return a.localeCompare(b);
-  //   });
+  //   const a = recipes.map((r) =>
+  //     r.title.sort(function (a, b) {
+  //       return a + b;
+  //     })
+  //   );
+  //   dispatch(a);
   // };
   // const handleDescendant = () => {
-  //   recipes.title.sort(function (a, b) {
-  //     return b.localeCompare(a);
-  //   });
+  //   const d = recipes.map((r) =>
+  //     r.title.sort(function (a, b) {
+  //       return a - b;
+  //     })
+  //   );
+  //   dispatch(d);
   // };
 
-  // useEffect(() => {
-  //   dispatch(getAllRecipes());
-  // }, [dispatch]);
   return (
     <div>
       <select className={a.AlphabeticOrder}>
@@ -33,7 +35,3 @@ const SelectAlphabeticalOrder = () => {
 };
 
 export default SelectAlphabeticalOrder;
-{
-  /* <option onClick={(e) => handleAscendancy(e)}>ASCENDANCY</option>
-        <option onClick={(e) => handleDescendant(e)}>DESCENDANT</option> */
-}

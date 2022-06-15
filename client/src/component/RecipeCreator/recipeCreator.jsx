@@ -24,7 +24,6 @@ const RecipeCreator = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
   };
 
   const handleSelect = (e) => {
@@ -32,7 +31,6 @@ const RecipeCreator = () => {
       ...input,
       diets: [...input.diets, e.target.value],
     });
-    console.log(input);
   };
 
   useEffect(() => {
@@ -58,7 +56,11 @@ const RecipeCreator = () => {
     <div className={a.Parent}>
       <div className={a.Countainer}>
         <h1 className={a.Title}>WELCOME TO RECIPE CREATOR</h1>
-        <form className={a.Form} onSubmit={(e) => handleSubmit(e)}>
+        <form
+          key={Diets.id}
+          className={a.Form}
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <label className={a.Subtitle}>TITLE OF THE RECIPE :</label>
           <input
             type="text"

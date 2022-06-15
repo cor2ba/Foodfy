@@ -1,14 +1,27 @@
-.Card {
+.Countainer {
   background-image: url(../../imgs/backgroundhome.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+}
+
+.Card {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 80px;
   padding-top: 60px;
-  padding-bottom: 60px;
+  margin: 0px;
+}
+
+.Page {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
   margin: 0px;
 }
