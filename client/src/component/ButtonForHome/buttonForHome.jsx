@@ -5,7 +5,7 @@ import a from "./buttonForHome.module.css";
 const ButtonForHome = () => {
   return (
     <div>
-      <Link className={a.Link} to="/">
+      <Link className={a.Link} to="/recipes">
         <h1 className={a.Title}>FOOD APP</h1>
       </Link>
     </div>

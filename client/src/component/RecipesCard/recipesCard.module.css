@@ -27,10 +27,6 @@
   font-family: fantasy;
 }
 
-.Details:hover {
-  color: white;
-}
-
 .Img {
   max-height: 200px;
   min-width: 350px;

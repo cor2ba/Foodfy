@@ -3,8 +3,12 @@ import RecipesCard from "../RecipesCard/recipesCard";
 import { getAllRecipes } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import a from "./recipes.module.css";
-import NavBar from "../NavBar/navBar";
+import ButtonForHome from "../ButtonForHome/buttonForHome";
+import ButtonForCreator from "../ButtonForCreator/buttonForCreator";
+import SearchBar from "../SearchBar/searchBar";
+import SelectDiet from "../SelectDiet/selectDiet";
 import Page from "../Page/page";
+import { orderByName } from "../../redux/actions";
 
 const Recipes = () => {
   const dispatch = useDispatch();
@@ -14,6 +18,7 @@ const Recipes = () => {
   const indexOfLastRecipes = currentPage * recipesPerPage;
   const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstRecipes, indexOfLastRecipes);
+  const [, setOrden] = useState("");
 
   const page = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -23,12 +28,28 @@ const Recipes = () => {
     dispatch(getAllRecipes());
   }, [dispatch]);
 
+  const handleSort = (e) => {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordened ${e.target.value}`);
+  };
+
   return (
     <div className={a.Countainer}>
       <div className={a.NavBar}>
-        <NavBar />
+        <div className={a.CountainerNav}>
+          <ButtonForHome />
+          <SearchBar />
+          <SelectDiet />
+          <select onChange={(e) => handleSort(e)} className={a.AlphabeticOrder}>
+            <option value="any">ANY ORDER</option>
+            <option value="asd">ASCENDANCY</option>
+            <option value="des">DESCENDANT</option>
+          </select>
+          <ButtonForCreator />
+        </div>
       </div>
-
       <div className={a.Card}>
         {currentRecipes?.map((r) => {
           return (

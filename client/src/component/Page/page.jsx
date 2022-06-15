@@ -13,8 +13,12 @@ export default function Page({ recipesPerPage, recipes, page }) {
       <ul className={a.List}>
         {pageNumber &&
           pageNumber.map((number) => (
-            <li className={a.ListChildrens} key={number}>
-              <a onClick={() => page(number)}>{number}</a>
+            <li
+              className={a.ListChildrens}
+              key={number}
+              onClick={() => page(number)}
+            >
+              {number}
             </li>
           ))}
       </ul>
