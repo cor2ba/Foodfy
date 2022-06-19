@@ -6,6 +6,7 @@ export const GET_RECIPE_ID = "GET_RECIPE_ID";
 export const FILTER_BY_DIETS = "FILTER_BY_DIETS";
 export const FILTER_ALPHABETIC = "FILTER_ALPHABETIC";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const ORDER_HEALTH_SCORE = "ORDER_HEALTH_SCORE";
 const axios = require("axios");
 
 export const getAllRecipes = () => async (dispatch) => {
@@ -35,14 +36,13 @@ export const getDiets = () => async (dispatch) => {
   return dispatch({ type: GET_DIETS, payload });
 };
 
-export const getDietsId = (id) => async (dispatch) => {
+export const getRecipesId = (id) => async (dispatch) => {
   const response = await axios.get(`http://localhost:3001/recipe/${id}`);
   const payload = await response.data;
   return dispatch({ type: GET_RECIPE_ID, payload });
 };
 
 export const filterByDiets = (payload) => {
-  console.log(payload);
   return {
     type: FILTER_BY_DIETS,
     payload,
@@ -59,6 +59,14 @@ export const filterAlphebetic = (payload) => {
 export const orderByName = (payload) => {
   return {
     type: ORDER_BY_NAME,
+    payload,
+  };
+};
+
+export const orderHealthScore = (payload) => {
+  console.log(payload);
+  return {
+    type: ORDER_HEALTH_SCORE,
     payload,
   };
 };

@@ -1,6 +1,7 @@
 .Nav {
   display: flex;
   flex-direction: row;
+  margin: 50px;
 }
 
 .List {
@@ -17,9 +18,11 @@
 
 .ListChildrens {
   list-style: none;
-  background-color: black;
-  color: white;
+  background: linear-gradient(to right, green, white, red);
+  color: black;
   border-radius: 10px;
   margin: 10px;
   width: 30px;
+  border: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.555) 3px 3px 3px 3px;
 }

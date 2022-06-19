@@ -1,0 +1,25 @@
+.Parent {
+  background-color: rgb(255, 135, 135);
+}
+
+.Countainer {
+  position: absolute;
+  left: 32.6%;
+  top: 18%;
+  border: 3px solid black;
+  height: 500px;
+  width: 650px;
+  border-radius: 40%;
+  text-align: center;
+  padding-top: 120px;
+  background: linear-gradient(to right, green, white, red);
+  font-family: Helvetica;
+  text-shadow: white 5px 5px 5px;
+}
+
+.Title {
+  font-size: 40px;
+  text-align: center;
+  color: black;
+  font-family: Helvetica;
+}

@@ -13,13 +13,14 @@ const RecipeCreator = () => {
   const [input, setInput] = useState({
     title: "",
     summary: "",
-    healthScore: "",
-    steps: "",
+    healthScore: 0,
+    steps: [],
     image: "",
     diets: [],
   });
 
   const handleInputChange = (e) => {
+    console.log(input);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -39,13 +40,14 @@ const RecipeCreator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
+    console.log(input.steps);
     dispatch(createRecipe(input));
     alert("¡RECIPE CREATED!");
     setInput({
       title: "",
       summary: "",
-      healthScore: "",
-      steps: "",
+      healthScore: 0,
+      steps: [],
       image: "",
       diets: [],
     });
@@ -69,6 +71,9 @@ const RecipeCreator = () => {
             name="title"
             input={input.title}
             onChange={(e) => handleInputChange(e)}
+            minLength={3}
+            maxLength={17}
+            required
           ></input>
           <label className={a.Subtitle}>MAKE A SUMMARY OF THE RECIPE :</label>
           <input
@@ -78,6 +83,9 @@ const RecipeCreator = () => {
             name="summary"
             input={input.summary}
             onChange={(e) => handleInputChange(e)}
+            minLength={5}
+            maxLength={30}
+            required
           ></input>
           <label className={a.Subtitle}>
             MAKE A STEP TO STEP OF THE RECIPE :
@@ -89,15 +97,21 @@ const RecipeCreator = () => {
             name="steps"
             input={input.steps}
             onChange={(e) => handleInputChange(e)}
+            minLength={10}
+            maxLength={60}
+            required
           ></input>
           <label className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</label>
           <input
-            type="text"
+            type="number"
             placeholder="HEALTH SCORE..."
             className={a.InputCreate}
             name="healthScore"
             input={input.healthScore}
             onChange={(e) => handleInputChange(e)}
+            max={100}
+            min={1}
+            required
           ></input>
           <label className={a.Subtitle}>CHOOSE A IMAGE :</label>
           <input
@@ -107,13 +121,20 @@ const RecipeCreator = () => {
             name="image"
             input={input.image}
             onChange={(e) => handleInputChange(e)}
+            required
           ></input>
           <label className={a.Subtitle}>
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
           </label>
-          <select className={a.Select} onChange={(e) => handleSelect(e)}>
+          <select
+            className={a.Select}
+            onChange={(e) => handleSelect(e)}
+            required
+          >
             {Diets.map((d) => (
-              <option value={d.diets}>{d.diets.toUpperCase()}</option>
+              <option key={d.id} value={d.diets}>
+                {d.diets.toUpperCase()}
+              </option>
             ))}
           </select>
           <ul>

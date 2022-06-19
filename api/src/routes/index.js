@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "b8bacb189134458d8582853bb029cc81";
+const apiKey = "738ffc312f4f4b428ac578d293033c30";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -15,6 +15,7 @@ router.get("/recipes", async (req, res) => {
         image: f.image,
         id: f.id,
         title: f.title.toUpperCase(),
+        healthScore: f.healthScore,
         diets: f.diets?.map((diets) => {
           return {
             diets,
@@ -49,8 +50,13 @@ router.get("/recipe", async (req, res) => {
     let filtrados = (filteredName = filteredName.map((f) => {
       return {
         image: f.image,
+        id: f.id,
         title: f.title.toUpperCase(),
-        diets: f.diets.map((d) => d.toUpperCase()),
+        diets: f.diets?.map((diets) => {
+          return {
+            diets,
+          };
+        }),
       };
     }));
     res.status(200).json(filtrados);
@@ -74,17 +80,25 @@ router.get("/recipe/:idReceta", async (req, res) => {
             image: f.image,
             id: f.id,
             title: f.title,
-            diets: f.diets,
+            diets: f.diets?.map((diets) => {
+              return {
+                diets,
+              };
+            }),
             healthScore: f.healthScore,
             summary: f.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""),
-            steps: "Haven´t steps",
+            steps: "HAVEN´T STEPS",
           };
         }
         return {
           image: f.image,
           id: f.id,
           title: f.title,
-          diets: f.diets,
+          diets: f.diets?.map((diets) => {
+            return {
+              diets,
+            };
+          }),
           healthScore: f.healthScore,
           summary: f.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""),
           steps: f.analyzedInstructions[0].steps.map((a) => a.step),
@@ -92,8 +106,19 @@ router.get("/recipe/:idReceta", async (req, res) => {
       }));
       res.status(200).send(filtrados);
     } else if (idReceta.length > 25) {
-      const recipe = await Recipe.findOne({ where: { id: idReceta } });
-      res.status(200).send(recipe);
+      const recipe = await Recipe.findOne({
+        where: { id: idReceta },
+        include: [
+          {
+            model: Diet,
+            attributes: ["diets"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      const array = [];
+      array.push(recipe);
+      res.status(200).send(array);
     }
   } catch (error) {
     res.status(404).send("Ooops 404 error");
@@ -130,17 +155,16 @@ router.post("/recipes", async (req, res) => {
 
 router.get("/diets", async (req, res) => {
   let arrDiets = [
-    { diets: "Gluten Free" },
-    { diets: "Lacto Vegetarian" },
-    { diets: "Ketogenic" },
-    { diets: "Vegetarian" },
-    { diets: "Ovo Vegetarian" },
-    { diets: "Vegan" },
-    { diets: "Pescetarian" },
-    { diets: "Paleo" },
-    { diets: "Primal" },
-    { diets: "Low FODMAP" },
-    { diets: "Whole 30" },
+    { diets: "GLUTEN FREE" },
+    { diets: "DAIRY FREE" },
+    { diets: "KETOGENIC" },
+    { diets: "LACTO OVO VEGETARIAN" },
+    { diets: "VEGAN" },
+    { diets: "PALEO" },
+    { diets: "PRIMAL" },
+    { diets: "WHOLE 30" },
+    { diets: "PALEOLITHIC" },
+    { diets: "PESCATARIAN" },
   ];
   arrDiets.map((a) => {
     Diet.findOrCreate({ where: { diets: a.diets } });

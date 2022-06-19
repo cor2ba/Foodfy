@@ -22,9 +22,9 @@ const SelectDiet = () => {
         onChange={(e) => handleFilterDiets(e)}
         className={a.DietOrderSelect}
       >
-        <option value={"ALL"}>ALL RECIPES</option>
+        <option value="ALL">ALL DIETS</option>
         {diets.map((d) => (
-          <option key={d.id} value={d.diets}>
+          <option key={d.id} value={d.diets.toLowerCase()}>
             {d.diets.toUpperCase()}
           </option>
         ))}

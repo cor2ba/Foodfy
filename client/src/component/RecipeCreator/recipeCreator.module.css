@@ -10,10 +10,18 @@
   bottom: 0%;
 }
 
+.Title:hover {
+  transform: scale(1.1);
+}
+
+.Submit:hover {
+  transform: scale(1.1);
+}
+
 .Countainer {
   background-image: url(../../imgs/creatorrecipe.jpg);
   background-size: cover;
-  width: 800px;
+  width: 900px;
   height: 900px;
   display: flex;
   flex-direction: column;
@@ -70,7 +78,7 @@
   font-family: Cardo;
   font-size: 20px;
   text-shadow: white 1px 1px 1px;
-  cursor: crosshair;
+  cursor: inherit;
 }
 
 .InputCreate {

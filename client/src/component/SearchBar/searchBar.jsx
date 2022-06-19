@@ -14,7 +14,11 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getRecipeName(name));
+    if (!name.length) {
+      alert("WE NEED A RECIPE NAME");
+    } else {
+      dispatch(getRecipeName(name));
+    }
   };
   return (
     <div>

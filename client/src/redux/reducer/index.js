@@ -3,17 +3,17 @@ import {
   GET_DIETS,
   GET_RECIPE_NAME,
   GET_RECIPE_ID,
-  CREATE_RECIPE,
   FILTER_BY_DIETS,
   ORDER_BY_NAME,
+  ORDER_HEALTH_SCORE,
 } from "../actions";
 
 const initialState = {
   diets: [],
   recipes: [],
-  creates: {},
   recipe: [],
   recipesCopy: [],
+  copy: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -23,11 +23,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: action.payload,
         recipesCopy: action.payload,
-      };
-    case CREATE_RECIPE:
-      return {
-        ...state,
-        creates: action.payload,
+        copy: action.payload,
       };
     case GET_DIETS:
       return {
@@ -49,15 +45,22 @@ const rootReducer = (state = initialState, action) => {
       const dietsFiltered =
         action.payload === "ALL"
           ? allRecipes
-          : allRecipes.filter((a) => a.diets === action.payload);
+          : allRecipes.filter((e) => {
+              return e.diets?.find((i) => {
+                return i.diets.includes(action.payload);
+              });
+            });
       return {
         ...state,
         recipes: dietsFiltered,
       };
     case ORDER_BY_NAME:
+      const all = state.recipesCopy;
       let sortedArr =
-        action.payload === "asd"
-          ? state.recipes.sort((a, b) => {
+        action.payload === "ALL"
+          ? all
+          : action.payload === "asd"
+          ? all.sort((a, b) => {
               if (a.title > b.title) {
                 return 1;
               }
@@ -66,7 +69,8 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             })
-          : state.recipes.sort((a, b) => {
+          : action.payload === "des"
+          ? all.sort((a, b) => {
               if (a.title > b.title) {
                 return -1;
               }
@@ -74,10 +78,41 @@ const rootReducer = (state = initialState, action) => {
                 return 1;
               }
               return 0;
-            });
+            })
+          : "";
       return {
         ...state,
         recipes: sortedArr,
+      };
+    case ORDER_HEALTH_SCORE:
+      const allD = state.copy;
+      let arr =
+        action.payload === "ALL"
+          ? allD
+          : action.payload === "higher"
+          ? allD.sort((a, b) => {
+              if (a.healthScore > b.healthScore) {
+                return 1;
+              }
+              if (b.healthScore > a.healthScore) {
+                return -1;
+              }
+              return 0;
+            })
+          : action.payload === "lower"
+          ? allD.sort((a, b) => {
+              if (a.healthScore > b.healthScore) {
+                return -1;
+              }
+              if (b.healthScore > a.healthScore) {
+                return 1;
+              }
+              return 0;
+            })
+          : allD;
+      return {
+        ...state,
+        recipes: arr,
       };
     default:
       return initialState;
