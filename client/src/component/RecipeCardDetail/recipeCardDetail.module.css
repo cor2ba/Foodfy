@@ -10,10 +10,6 @@
   background-size: cover;
   background-attachment: fixed;
 }
-.Countainer:hover {
-  border: rgb(190, 155, 0) 2px solid;
-  transform: scale(1.1);
-}
 
 .CountainerText {
   display: flex;
@@ -23,7 +19,7 @@
 
 .Image {
   margin-top: 50px;
-  border: 4px solid black;
+  border: 1px solid black;
   object-fit: contain;
   border-radius: 20px;
   max-width: 500px;

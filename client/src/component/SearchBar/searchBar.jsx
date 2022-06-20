@@ -1,21 +1,28 @@
 import React, { useState } from "react";
 import a from "./searchBar.module.css";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getRecipeName } from "../../redux/actions";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const recipes = useSelector((state) => state.recipes);
 
   const handleInputName = (e) => {
     e.preventDefault();
     setName(e.target.value);
   };
 
+  const exist = recipes.every(
+    (r) => r.title.toUpperCase() !== name.toUpperCase()
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.length) {
       alert("WE NEED A RECIPE NAME");
+    } else if (exist) {
+      alert("NAME DOESN´T EXIST");
     } else {
       dispatch(getRecipeName(name));
     }

@@ -22,7 +22,7 @@ const CardDetail = (props) => {
         <h3 className={a.Title}>STEP TO STEP:</h3>
         <ul className={a.List}>
           {typeof props.steps === "string"
-            ? props.steps
+            ? props.steps.toUpperCase()
             : props.steps.map((s) => {
                 return (
                   <li key={s} className={a.List}>

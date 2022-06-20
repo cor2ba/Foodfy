@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "738ffc312f4f4b428ac578d293033c30";
+const apiKey = "f8622795094d431b97c514bf7811983f";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
 
@@ -130,7 +130,9 @@ router.post("/recipes", async (req, res) => {
   console.log(title, summary, healthScore, steps, image, diets);
   try {
     if (!title || !summary) {
-      res.status(404).send("It is mandatory to fill in your title and summary");
+      return res
+        .status(404)
+        .send("It is mandatory to fill in your title and summary");
     }
     const existente = await Recipe.findOne({ where: { title: title } });
     if (existente) return res.status(404).send("That recipe already exists");

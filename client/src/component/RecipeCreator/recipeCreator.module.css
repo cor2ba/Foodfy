@@ -3,11 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  align-content: center;
 }
 
 .Title:hover {
@@ -21,13 +17,15 @@
 .Countainer {
   background-image: url(../../imgs/creatorrecipe.jpg);
   background-size: cover;
-  width: 900px;
-  height: 900px;
+  width: 700px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 3px solid black;
+  margin: 50px;
+  padding: 30px;
 }
 
 .Select {
@@ -117,6 +115,15 @@
 
 .List {
   list-style: none;
+}
+
+.titleErrors {
+  color: black;
+  background-color: rgba(165, 42, 42, 0.488);
+  border: 3px solid brown;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 13px;
 }
 
 ::placeholder {

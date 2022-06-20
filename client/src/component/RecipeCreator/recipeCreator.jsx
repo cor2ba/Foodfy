@@ -4,11 +4,14 @@ import { Link, useHistory } from "react-router-dom";
 import img from "../../imgs/backicon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { createRecipe, getDiets } from "../../redux/actions";
+import { Validations } from "./validations";
 
 const RecipeCreator = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const Diets = useSelector((state) => state.diets);
+  const [errors, setErrors] = useState({});
+  const recipes = useSelector((state) => state.recipes);
 
   const [input, setInput] = useState({
     title: "",
@@ -25,6 +28,12 @@ const RecipeCreator = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      Validations({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSelect = (e) => {
@@ -32,26 +41,42 @@ const RecipeCreator = () => {
       ...input,
       diets: [...input.diets, e.target.value],
     });
+    setErrors(
+      Validations({
+        ...input,
+        diets: [...input.diets, e.target.value],
+      })
+    );
   };
 
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
 
+  const exist = recipes.every(
+    (r) => r.title.toUpperCase() !== input.title.toUpperCase()
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault(e);
-    console.log(input.steps);
-    dispatch(createRecipe(input));
-    alert("¡RECIPE CREATED!");
-    setInput({
-      title: "",
-      summary: "",
-      healthScore: 0,
-      steps: [],
-      image: "",
-      diets: [],
-    });
-    history.push("/recipes");
+    if (!exist) {
+      return alert("NAME ALREADY EXIST");
+    } else if (Object.keys(errors).length) {
+      return alert(Object.values(errors));
+    } else {
+      console.log(input.steps);
+      dispatch(createRecipe(input));
+      alert("¡RECIPE CREATED!");
+      setInput({
+        title: "",
+        summary: "",
+        healthScore: 0,
+        steps: [],
+        image: "",
+        diets: [],
+      });
+      history.push("/recipes");
+    }
   };
 
   return (
@@ -71,10 +96,9 @@ const RecipeCreator = () => {
             name="title"
             input={input.title}
             onChange={(e) => handleInputChange(e)}
-            minLength={3}
-            maxLength={17}
             required
           ></input>
+          {errors.title && <h1 className={a.titleErrors}>{errors.title}</h1>}
           <label className={a.Subtitle}>MAKE A SUMMARY OF THE RECIPE :</label>
           <input
             type="text"
@@ -83,10 +107,11 @@ const RecipeCreator = () => {
             name="summary"
             input={input.summary}
             onChange={(e) => handleInputChange(e)}
-            minLength={5}
-            maxLength={30}
             required
           ></input>
+          {errors.summary && (
+            <h1 className={a.titleErrors}>{errors.summary}</h1>
+          )}
           <label className={a.Subtitle}>
             MAKE A STEP TO STEP OF THE RECIPE :
           </label>
@@ -97,10 +122,9 @@ const RecipeCreator = () => {
             name="steps"
             input={input.steps}
             onChange={(e) => handleInputChange(e)}
-            minLength={10}
-            maxLength={60}
             required
           ></input>
+          {errors.steps && <h1 className={a.titleErrors}>{errors.steps}</h1>}
           <label className={a.Subtitle}>CHOOSE A CUSTOMER HEALTH SCORE :</label>
           <input
             type="number"
@@ -109,10 +133,11 @@ const RecipeCreator = () => {
             name="healthScore"
             input={input.healthScore}
             onChange={(e) => handleInputChange(e)}
-            max={100}
-            min={1}
             required
           ></input>
+          {errors.healthScore && (
+            <h1 className={a.titleErrors}>{errors.healthScore}</h1>
+          )}
           <label className={a.Subtitle}>CHOOSE A IMAGE :</label>
           <input
             type="text"
@@ -123,20 +148,18 @@ const RecipeCreator = () => {
             onChange={(e) => handleInputChange(e)}
             required
           ></input>
+          {errors.image && <h1 className={a.titleErrors}>{errors.image}</h1>}
           <label className={a.Subtitle}>
             CHOOSE WHAT TYPE OF DIET USE YOUR RECIPE :
           </label>
-          <select
-            className={a.Select}
-            onChange={(e) => handleSelect(e)}
-            required
-          >
+          <select className={a.Select} onChange={(e) => handleSelect(e)}>
             {Diets.map((d) => (
               <option key={d.id} value={d.diets}>
                 {d.diets.toUpperCase()}
               </option>
             ))}
           </select>
+          {errors.diets && <h1 className={a.titleErrors}>{errors.diets}</h1>}
           <ul>
             <li className={a.List}>
               {input.diets.map((d) => d.toUpperCase() + " ,")}

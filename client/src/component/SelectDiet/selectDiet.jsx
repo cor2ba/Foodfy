@@ -8,6 +8,7 @@ const SelectDiet = () => {
   const diets = useSelector((state) => state.diets);
 
   const handleFilterDiets = (e) => {
+    e.preventDefault();
     dispatch(filterByDiets(e.target.value));
     console.log(e.target.value);
   };
