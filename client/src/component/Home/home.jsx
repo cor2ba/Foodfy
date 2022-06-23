@@ -5,21 +5,22 @@ import {
   orderByName,
   getAllRecipes,
   orderHealthScore,
+  filterByDiets,
 } from "../../redux/actions";
 import a from "./home.module.css";
 import RecipesCard from "../RecipesCard/recipesCard";
 import ButtonForHome from "../ButtonForHome/buttonForHome";
 import ButtonForCreator from "../ButtonForCreator/buttonForCreator";
-import SearchBar from "../SearchBar/searchBar";
-import SelectDiet from "../SelectDiet/selectDiet";
 import Loading from "../Loading/loading";
 import Page from "../Page/page";
+import SearchBar from "../SearchBar/searchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const diets = useSelector((state) => state.diets);
   const recipes = useSelector((state) => state.recipes);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage] = useState(8);
+  const [recipesPerPage] = useState(9);
   const indexOfLastRecipes = currentPage * recipesPerPage;
   const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstRecipes, indexOfLastRecipes);
@@ -27,6 +28,20 @@ const Home = () => {
 
   const page = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  let index = Math.ceil(recipes.length / recipesPerPage);
+
+  const nextHandler = () => {
+    if (currentPage >= index) return;
+    setCurrentPage(currentPage + 1);
+    console.log(currentPage);
+  };
+
+  const prevHandler = () => {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
+    console.log(currentPage);
   };
 
   useEffect(() => {
@@ -48,6 +63,13 @@ const Home = () => {
     setOrden(`Ordened ${e.target.value}`);
   };
 
+  const handleFilterDiets = (e) => {
+    e.preventDefault();
+    dispatch(filterByDiets(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordened ${e.target.value}`);
+  };
+
   if (!recipes.length) {
     return (
       <div className={a.Countainer}>
@@ -61,7 +83,19 @@ const Home = () => {
           <div className={a.CountainerNav}>
             <ButtonForHome />
             <SearchBar />
-            <SelectDiet />
+            <select
+              onChange={(e) => handleFilterDiets(e)}
+              className={a.DietOrderSelect}
+            >
+              <option className={a.Option} value="ALL">
+                ALL DIETS
+              </option>
+              {diets.map((d) => (
+                <option key={d.id} value={d.diets.toLowerCase()}>
+                  {d.diets.toUpperCase()}
+                </option>
+              ))}
+            </select>
             <select
               onChange={(e) => handleSort(e)}
               className={a.AlphabeticOrder}
@@ -87,6 +121,8 @@ const Home = () => {
               recipesPerPage={recipesPerPage}
               recipes={recipes.length}
               page={page}
+              nextHandler={nextHandler}
+              prevHandler={prevHandler}
             />
           </div>
         </div>

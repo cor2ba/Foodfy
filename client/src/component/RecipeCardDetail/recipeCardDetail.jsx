@@ -5,15 +5,13 @@ const CardDetail = (props) => {
   return (
     <div className={a.Countainer}>
       <div className={a.CountainerText}>
-        <h1 className={a.TitleMain}>{props.title.toUpperCase()}</h1>
+        <h1 key={props.id} className={a.TitleMain}>
+          {props.title.toUpperCase()}
+        </h1>
         <h3 className={a.Title}>DIETS:</h3>
-        <ul>
+        <ul className={a.List}>
           {props.diets?.map((d) => {
-            return (
-              <li key={d} className={a.List}>
-                {d.diets.toUpperCase()}
-              </li>
-            );
+            return <li>{d.diets.toUpperCase()}</li>;
           })}
         </ul>
 
@@ -24,11 +22,7 @@ const CardDetail = (props) => {
           {typeof props.steps === "string"
             ? props.steps.toUpperCase()
             : props.steps.map((s) => {
-                return (
-                  <li key={s} className={a.List}>
-                    {s.toUpperCase()}
-                  </li>
-                );
+                return <li>{s.toUpperCase()}</li>;
               })}
         </ul>
         <h3 className={a.Title}>HEALTH SCORE:</h3>

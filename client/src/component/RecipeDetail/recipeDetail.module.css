@@ -2,31 +2,44 @@
   background-size: cover;
   background-attachment: fixed;
   background-image: url(../../imgs/detailbackground.jpg);
-  padding-bottom: 60px;
+  background-repeat: no-repeat;
   min-height: 100vh;
+  padding-top: 60px;
 }
 
 .Countainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  margin-bottom: 50px;
+}
+
+.Button {
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  text-shadow: white 2px 2px 2px;
+  margin: 8px;
+  background: linear-gradient(to right, green, white, red);
+  margin-top: 40px;
+  font-family: fantasy;
+  cursor: inherit;
 }
 
 .Image {
+  margin: 40px;
   min-width: 60px;
   max-width: 60px;
   min-height: 60px;
   max-height: 60px;
-  margin: 40px;
   background-color: white;
   border-radius: 50px;
   border-radius: 100px;
   background-size: 50px;
   cursor: inherit;
-  padding: 5px;
 }

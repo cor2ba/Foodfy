@@ -6,6 +6,7 @@ import {
   FILTER_BY_DIETS,
   ORDER_BY_NAME,
   ORDER_HEALTH_SCORE,
+  DELETE,
 } from "../actions";
 
 const initialState = {
@@ -13,7 +14,7 @@ const initialState = {
   recipes: [],
   recipe: [],
   recipesCopy: [],
-  copy: [],
+  delete: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -23,7 +24,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: action.payload,
         recipesCopy: action.payload,
-        copy: action.payload,
       };
     case GET_DIETS:
       return {
@@ -85,11 +85,11 @@ const rootReducer = (state = initialState, action) => {
         recipes: sortedArr,
       };
     case ORDER_HEALTH_SCORE:
-      const allD = state.copy;
+      const allD = state.recipesCopy;
       let arr =
         action.payload === "ALL"
           ? allD
-          : action.payload === "higher"
+          : action.payload === "lower"
           ? allD.sort((a, b) => {
               if (a.healthScore > b.healthScore) {
                 return 1;
@@ -99,7 +99,7 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             })
-          : action.payload === "lower"
+          : action.payload === "higher"
           ? allD.sort((a, b) => {
               if (a.healthScore > b.healthScore) {
                 return -1;
@@ -113,6 +113,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: arr,
+      };
+    case DELETE:
+      let deleted = state.delete;
+      return {
+        ...state,
+        recipe: deleted,
       };
     default:
       return initialState;

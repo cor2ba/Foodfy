@@ -24,6 +24,8 @@ const RecipeCreator = () => {
 
   const handleInputChange = (e) => {
     console.log(input);
+    if (input.diets) {
+    }
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -39,12 +41,12 @@ const RecipeCreator = () => {
   const handleSelect = (e) => {
     setInput({
       ...input,
-      diets: [...input.diets, e.target.value],
+      diets: [...new Set([...input.diets, e.target.value])],
     });
     setErrors(
       Validations({
         ...input,
-        diets: [...input.diets, e.target.value],
+        diets: [...new Set([...input.diets, e.target.value])],
       })
     );
   };
@@ -59,6 +61,10 @@ const RecipeCreator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
+    if (input.image === "") {
+      input.image =
+        "https://imgs.search.brave.com/_KPvrLWa9wT9dTKgNV9dQwk7IWkdnjWzC-Cv7cyJRo0/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/aGVhbHRobndlbGwu/Y29tL2hlYWx0aG53/ZWxsL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDE4LzA0LzhiZWYx/OTY1LTI0MDQtNDky/OS1hYjI5LTFmZGIx/ZWIzYjY5Zi5qcGc";
+    }
     if (!exist) {
       return alert("NAME ALREADY EXIST");
     } else if (Object.keys(errors).length) {
@@ -75,7 +81,7 @@ const RecipeCreator = () => {
         image: "",
         diets: [],
       });
-      history.push("/recipes");
+      history.push("/home");
     }
   };
 
@@ -85,6 +91,7 @@ const RecipeCreator = () => {
         <h1 className={a.Title}>WELCOME TO RECIPE CREATOR</h1>
         <form
           key={Diets.id}
+          autoComplete="off"
           className={a.Form}
           onSubmit={(e) => handleSubmit(e)}
         >
@@ -146,7 +153,6 @@ const RecipeCreator = () => {
             name="image"
             input={input.image}
             onChange={(e) => handleInputChange(e)}
-            required
           ></input>
           {errors.image && <h1 className={a.titleErrors}>{errors.image}</h1>}
           <label className={a.Subtitle}>
@@ -168,7 +174,7 @@ const RecipeCreator = () => {
           <button className={a.Submit} type="submit">
             SEND
           </button>
-          <Link to="/recipes">
+          <Link to="/home">
             <img className={a.Img} src={img} alt="Not Found"></img>
           </Link>
         </form>

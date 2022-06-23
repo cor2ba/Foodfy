@@ -7,10 +7,18 @@ export const Validations = (input) => {
     errors.title = "SHOULD CREATE A TITLE";
   }
 
+  if (input.title >= 40) {
+    errors.title = "THE MAX OF THE LENGTH IS 40";
+  }
+
   //Summary:
 
   if (!input.summary) {
     errors.summary = "SHOULD CREATE A SUMMARY";
+  }
+
+  if (input.summary.length >= 100) {
+    errors.summary = "THE MAX OF THE LENGTH IS 100";
   }
 
   //Health Score:
@@ -28,11 +36,17 @@ export const Validations = (input) => {
     errors.steps = "SHOULD BE CREATE A STEP TO STEP";
   }
 
+  if (input.steps.length >= 116) {
+    errors.steps = "THE MAX OF THE LENGTH IS 116";
+  }
+
   //Image:
 
-  if (!input.image) {
-    errors.image = "SHOULD PUT A IMAGE";
-  }
+  // if (!input.image) {
+  //   errors.image = "SHOULD PUT A IMAGE";
+  // }
+
+  //Diets:
 
   if (input.diets.length === 0 || input.diets.length === 0) {
     errors.diets = "SHOULD HAVE 1 OR MORE DIETS";

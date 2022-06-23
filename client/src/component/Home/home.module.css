@@ -15,6 +15,34 @@
   height: 100px;
 }
 
+.InputRecipes {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
+  border: 2px solid black;
+  height: 20px;
+  font-family: Cardo;
+  cursor: inherit;
+}
+
+.Sumbit {
+  border: 2px solid black;
+  height: 26.5px;
+  font-family: Cardo;
+  background: linear-gradient(
+    to right,
+    rgb(0, 128, 0),
+    rgb(255, 255, 255),
+    rgb(255, 0, 0)
+  );
+  text-shadow: white 1px 1px 1px;
+  cursor: inherit;
+}
+
+.Sumbit:hover {
+  text-shadow: black 1px 1px 1px;
+  color: white;
+}
+
 ::placeholder {
   color: white;
 }
@@ -35,6 +63,14 @@
   flex-wrap: wrap;
   text-align: center;
   margin: 0px;
+}
+
+.DietOrderSelect {
+  background-color: rgba(0, 0, 0, 0.762);
+  color: white;
+  border: 2px solid black;
+  height: 27px;
+  font-family: Cardo;
 }
 
 .HealthOrderSelect {

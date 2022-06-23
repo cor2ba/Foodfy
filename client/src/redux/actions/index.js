@@ -7,6 +7,8 @@ export const FILTER_BY_DIETS = "FILTER_BY_DIETS";
 export const FILTER_ALPHABETIC = "FILTER_ALPHABETIC";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_HEALTH_SCORE = "ORDER_HEALTH_SCORE";
+export const DELETE_BACK = "DELETE_BACK";
+export const DELETE = "DELETE";
 const axios = require("axios");
 
 export const getAllRecipes = () => async (dispatch) => {
@@ -42,6 +44,12 @@ export const getRecipesId = (id) => async (dispatch) => {
   return dispatch({ type: GET_RECIPE_ID, payload });
 };
 
+export const deleteBack = (id) => async (dispatch) => {
+  const response = await axios.delete(`http://localhost:3001/recipe/${id}`);
+  const payload = await response.data;
+  return dispatch({ type: DELETE_BACK, payload });
+};
+
 export const filterByDiets = (payload) => {
   return {
     type: FILTER_BY_DIETS,
@@ -67,6 +75,13 @@ export const orderHealthScore = (payload) => {
   console.log(payload);
   return {
     type: ORDER_HEALTH_SCORE,
+    payload,
+  };
+};
+
+export const deleted = (payload) => {
+  return {
+    type: DELETE,
     payload,
   };
 };

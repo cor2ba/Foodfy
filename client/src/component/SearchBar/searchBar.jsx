@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 import a from "./searchBar.module.css";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRecipeName } from "../../redux/actions";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const recipes = useSelector((state) => state.recipes);
+  const filtered = recipes.every((r) => {
+    return r.title.toLowerCase() !== name.toLowerCase();
+  });
 
   const handleInputName = (e) => {
     e.preventDefault();
     setName(e.target.value);
   };
 
-  const exist = recipes.every(
-    (r) => r.title.toUpperCase() !== name.toUpperCase()
-  );
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.length) {
-      alert("WE NEED A RECIPE NAME");
-    } else if (exist) {
-      alert("NAME DOESN´T EXIST");
+      return alert("WE NEED A RECIPE NAME");
+    } else if (filtered) {
+      return alert("THE RECIPE DOESN´T EXIST");
     } else {
       dispatch(getRecipeName(name));
     }
   };
+
   return (
     <div>
       <input
@@ -46,14 +46,4 @@ const SearchBar = () => {
   );
 };
 
-export const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes,
-  };
-};
-
-export function mapDispatchToProps(dispatch) {
-  return { getRecipeName: (name) => dispatch(getRecipeName(name)) };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default SearchBar;

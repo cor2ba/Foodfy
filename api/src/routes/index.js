@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const axios = require("axios");
-const apiKey = "f8622795094d431b97c514bf7811983f";
+const API_KEY = "147698ee318c4ddcb596c6b0526012c9";
 const { Recipe, Diet } = require("../db.js");
-const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=100`;
+const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
 
 const router = Router();
 
@@ -52,6 +52,7 @@ router.get("/recipe", async (req, res) => {
         image: f.image,
         id: f.id,
         title: f.title.toUpperCase(),
+        healthScore: f.healthScore,
         diets: f.diets?.map((diets) => {
           return {
             diets,
@@ -176,6 +177,16 @@ router.get("/diets", async (req, res) => {
     res.status(200).send(diets);
   } catch (error) {
     return res.status(404).send("Ooops 404 error");
+  }
+});
+
+router.delete("/recipe/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    Recipe.destroy({ where: { id: id } });
+    res.status(200).send("Deleted");
+  } catch (error) {
+    res.status(404).send("Ooops 404 error");
   }
 });
 

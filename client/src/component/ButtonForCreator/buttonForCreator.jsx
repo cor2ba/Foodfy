@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ButtonForCreator = () => {
   return (
     <div>
-      <Link to="/RecipeCreator">
+      <Link to="/form">
         <button className={a.ButtonCreator}>
           ¿DO YOU WANT TO CREATE A NEW RECIPE?
         </button>

@@ -4,6 +4,9 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .Title:hover {
@@ -15,10 +18,11 @@
 }
 
 .Countainer {
-  background-image: url(../../imgs/creatorrecipe.jpg);
+  background-color: rgba(0, 0, 0, 0.339);
   background-size: cover;
   width: 700px;
   height: auto;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,6 +119,9 @@
 
 .List {
   list-style: none;
+  color: white;
+  font-family: Cardo;
+  text-shadow: black 2px 2px 2px;
 }
 
 .titleErrors {

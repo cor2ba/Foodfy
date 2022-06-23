@@ -4,9 +4,7 @@
   border-radius: 50px;
   height: auto;
   background: linear-gradient(to right, green, white, red);
-  padding-bottom: 60px;
-  padding: 40px;
-  background-image: url(../../imgs/createbackground.jpg);
+  padding: 40px 60px;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -17,9 +15,13 @@
   align-items: center;
 }
 
+.CountainerTwo {
+  display: flex;
+}
+
 .Image {
   margin-top: 50px;
-  border: 1px solid black;
+  border: 3px solid black;
   object-fit: contain;
   border-radius: 20px;
   max-width: 500px;
@@ -29,20 +31,22 @@
 .TitleMain {
   font-size: 30px;
   border: 3px solid black;
-  width: 1000px;
+  width: auto;
+  padding-right: 20px;
+  padding-left: 20px;
   border-radius: 20px;
   text-align: center;
   background: linear-gradient(to right, green, white, red);
-  text-shadow: white 2px 2px 2px;
+  text-shadow: rgba(255, 255, 255, 0.65) 2px 2px 2px;
   font-family: fantasy;
 }
 
 .Title {
   font-size: 20px;
   text-shadow: white 2px 2px 2px;
-  background: linear-gradient(to right, green, white, red);
+  background: rgba(255, 255, 255, 0.511);
   border: 3px solid black;
-  width: 500px;
+  width: 170px;
   border-radius: 20px;
   text-align: center;
   font-family: fantasy;
@@ -52,6 +56,12 @@
   color: white;
   text-shadow: black 2px 2px 2px;
   font-family: Cardo;
+  width: 1000px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.511);
+  border: 3px solid black;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .List {
@@ -61,4 +71,9 @@
   text-shadow: black 2px 2px 2px;
   text-align: center;
   font-family: Cardo;
+  width: 955px;
+  background: rgba(0, 0, 0, 0.511);
+  border: 3px solid black;
+  padding: 20px;
+  border-radius: 10px;
 }
