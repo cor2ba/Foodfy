@@ -30,20 +30,6 @@ const Home = () => {
     setCurrentPage(pageNumber);
   };
 
-  let index = Math.ceil(recipes.length / recipesPerPage);
-
-  const nextHandler = () => {
-    if (currentPage >= index) return;
-    setCurrentPage(currentPage + 1);
-    console.log(currentPage);
-  };
-
-  const prevHandler = () => {
-    if (currentPage === 1) return;
-    setCurrentPage(currentPage - 1);
-    console.log(currentPage);
-  };
-
   useEffect(() => {
     dispatch(getAllRecipes());
     dispatch(getDiets());
@@ -96,6 +82,7 @@ const Home = () => {
                 </option>
               ))}
             </select>
+            <h1 className={a.NumPage}>{currentPage}</h1>
             <select
               onChange={(e) => handleSort(e)}
               className={a.AlphabeticOrder}
@@ -121,8 +108,6 @@ const Home = () => {
               recipesPerPage={recipesPerPage}
               recipes={recipes.length}
               page={page}
-              nextHandler={nextHandler}
-              prevHandler={prevHandler}
             />
           </div>
         </div>

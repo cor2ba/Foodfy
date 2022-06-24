@@ -6,7 +6,7 @@ import {
   FILTER_BY_DIETS,
   ORDER_BY_NAME,
   ORDER_HEALTH_SCORE,
-  DELETE,
+  CLEAR,
 } from "../actions";
 
 const initialState = {
@@ -114,7 +114,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: arr,
       };
-    case DELETE:
+    case CLEAR:
       let deleted = state.delete;
       return {
         ...state,

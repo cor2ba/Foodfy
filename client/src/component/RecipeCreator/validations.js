@@ -11,6 +11,10 @@ export const Validations = (input) => {
     errors.title = "THE MAX OF THE LENGTH IS 40";
   }
 
+  if (input.title.search(/^[a-zA-Zñáéíóúü]*$/)) {
+    errors.title = "THE TITLE SHOULD HAVE LETTERS";
+  }
+
   //Summary:
 
   if (!input.summary) {
@@ -20,6 +24,10 @@ export const Validations = (input) => {
   if (input.summary.length >= 100) {
     errors.summary = "THE MAX OF THE LENGTH IS 100";
   }
+
+  // if (input.summary.search(/^[a-zA-Zñáéíóúü]*$/)) {
+  //   errors.summary = "THE SUMMARY SHOULD HAVE LETTERS";
+  // }
 
   //Health Score:
 
@@ -41,7 +49,7 @@ export const Validations = (input) => {
   }
 
   //Image:
-
+  //(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)
   // if (!input.image) {
   //   errors.image = "SHOULD PUT A IMAGE";
   // }

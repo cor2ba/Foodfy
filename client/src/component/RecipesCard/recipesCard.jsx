@@ -1,18 +1,8 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import a from "./recipesCard.module.css";
-import { useDispatch } from "react-redux";
-import { deleteBack } from "../../redux/actions";
 
 const RecipesCard = (props) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const deleteBackend = () => {
-    dispatch(deleteBack(props.id));
-    alert("RECIPE DELETED");
-    history.push("/");
-  };
-
   return (
     <div className={a.Countainer}>
       <img className={a.Img} src={props.image} alt="NOT FOUND"></img>
@@ -31,11 +21,6 @@ const RecipesCard = (props) => {
       <Link className={a.Link} to={`/recipes/${props.id}`}>
         <button className={a.Details}>DETAILS</button>
       </Link>
-      {props.id.length > 20 ? (
-        <button className={a.Details} onClick={(e) => deleteBackend(e)}>
-          DELETE
-        </button>
-      ) : null}
     </div>
   );
 };

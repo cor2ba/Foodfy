@@ -51,6 +51,16 @@ const RecipeCreator = () => {
     );
   };
 
+  // const deleteDiet = (d) => {
+  //   setInput({
+  //     ...input,
+  //     Diets: input.diets.filter(
+  //       (diets) => diets.toLowerCase() !== d.toLowerCase()
+  //     ),
+  //   });
+  //   console.log(input.diets);
+  // };
+
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
@@ -84,7 +94,7 @@ const RecipeCreator = () => {
       history.push("/home");
     }
   };
-
+  var num = 1;
   return (
     <div className={a.Parent}>
       <div className={a.Countainer}>
@@ -168,7 +178,12 @@ const RecipeCreator = () => {
           {errors.diets && <h1 className={a.titleErrors}>{errors.diets}</h1>}
           <ul>
             <li className={a.List}>
-              {input.diets.map((d) => d.toUpperCase() + " ,")}
+              {input.diets?.map((d) => (
+                <p>
+                  DIET {num++}:{`${d.toUpperCase()}`}
+                  {/* <button onClick={() => deleteDiet(d)}>X</button> */}
+                </p>
+              ))}
             </li>
           </ul>
           <button className={a.Submit} type="submit">

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const API_KEY = "147698ee318c4ddcb596c6b0526012c9";
+const API_KEY = "47262d327d38449aa8b3d0a208cfed4f";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
 
@@ -158,16 +158,16 @@ router.post("/recipes", async (req, res) => {
 
 router.get("/diets", async (req, res) => {
   let arrDiets = [
-    { diets: "GLUTEN FREE" },
-    { diets: "DAIRY FREE" },
-    { diets: "KETOGENIC" },
-    { diets: "LACTO OVO VEGETARIAN" },
-    { diets: "VEGAN" },
-    { diets: "PALEO" },
-    { diets: "PRIMAL" },
-    { diets: "WHOLE 30" },
-    { diets: "PALEOLITHIC" },
-    { diets: "PESCATARIAN" },
+    { diets: "gluten free" },
+    { diets: "dairy free" },
+    { diets: "ketogenic" },
+    { diets: "lacto ovo vegetarian" },
+    { diets: "vegan" },
+    { diets: "paleo" },
+    { diets: "primal" },
+    { diets: "whole 30" },
+    { diets: "paleolithic" },
+    { diets: "pescatarian" },
   ];
   arrDiets.map((a) => {
     Diet.findOrCreate({ where: { diets: a.diets } });
@@ -177,16 +177,6 @@ router.get("/diets", async (req, res) => {
     res.status(200).send(diets);
   } catch (error) {
     return res.status(404).send("Ooops 404 error");
-  }
-});
-
-router.delete("/recipe/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    Recipe.destroy({ where: { id: id } });
-    res.status(200).send("Deleted");
-  } catch (error) {
-    res.status(404).send("Ooops 404 error");
   }
 });
 
