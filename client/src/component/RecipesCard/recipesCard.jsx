@@ -1,8 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { deleteBack } from "../../redux/actions";
 import a from "./recipesCard.module.css";
 
 const RecipesCard = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const handleClick = () => {
+    dispatch(deleteBack(props.id));
+    history.push("/");
+  };
   return (
     <div className={a.Countainer}>
       <img className={a.Img} src={props.image} alt="NOT FOUND"></img>
@@ -18,9 +26,14 @@ const RecipesCard = (props) => {
           );
         })}
       </ul>
-      <Link className={a.Link} to={`/recipes/${props.id}`}>
+      <Link className={a.Link} to={`/${props.id}`}>
         <button className={a.Details}>DETAILS</button>
       </Link>
+      {props.id.length > 20 ? (
+        <button className={a.Details} onClick={() => handleClick()}>
+          DELETE
+        </button>
+      ) : null}
     </div>
   );
 };

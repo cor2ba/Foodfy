@@ -6,7 +6,7 @@ const ButtonForHome = () => {
   return (
     <div className={a.Countainer}>
       <Link className={a.Link} to="/">
-        <h1 className={a.Title}>FOOD APP</h1>
+        <h1 className={a.Title}>FOODFY</h1>
       </Link>
     </div>
   );

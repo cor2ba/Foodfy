@@ -1,12 +1,15 @@
 .Countainer {
-  width: 1300px;
+  width: 1000px;
   border: 3px solid black;
   border-radius: 50px;
   height: auto;
-  background: linear-gradient(to right, green, white, red);
   padding: 40px 60px;
   background-size: cover;
   background-attachment: fixed;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: rgba(0, 0, 0, 0.339);
 }
 
 .CountainerText {
@@ -43,8 +46,8 @@
 
 .Title {
   font-size: 20px;
-  text-shadow: white 2px 2px 2px;
-  background: rgba(255, 255, 255, 0.511);
+  text-shadow: rgba(255, 255, 255, 0.592) 2px 2px 2px;
+  background: linear-gradient(to right, green, white, red);
   border: 3px solid black;
   width: 170px;
   border-radius: 20px;
@@ -54,26 +57,32 @@
 
 .Subtitle {
   color: white;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   text-shadow: black 2px 2px 2px;
   font-family: Cardo;
-  width: 1000px;
+  width: 700px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.511);
+  background-color: rgba(0, 0, 0, 0.762);
   border: 3px solid black;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .List {
   list-style: none;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   color: white;
   margin-right: 45px;
   text-shadow: black 2px 2px 2px;
   text-align: center;
   font-family: Cardo;
-  width: 955px;
-  background: rgba(0, 0, 0, 0.511);
+  width: 700px;
+  background-color: rgba(0, 0, 0, 0.762);
   border: 3px solid black;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
 }

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getDiets,
-  orderByName,
   getAllRecipes,
-  orderHealthScore,
+  filters,
   filterByDiets,
+  createForMe,
 } from "../../redux/actions";
 import a from "./home.module.css";
 import RecipesCard from "../RecipesCard/recipesCard";
@@ -20,31 +20,40 @@ const Home = () => {
   const diets = useSelector((state) => state.diets);
   const recipes = useSelector((state) => state.recipes);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage] = useState(9);
+  const [recipesPerPage] = useState(8);
   const indexOfLastRecipes = currentPage * recipesPerPage;
   const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstRecipes, indexOfLastRecipes);
   const [, setOrden] = useState(1);
+  let index = Math.ceil(recipes.length / recipesPerPage);
 
   const page = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    dispatch(getAllRecipes());
-    dispatch(getDiets());
-  }, [dispatch]);
-
-  const handleSort = (e) => {
-    e.preventDefault();
-    dispatch(orderByName(e.target.value));
-    setCurrentPage(1);
-    setOrden(`Ordened ${e.target.value}`);
+  const nextHandler = () => {
+    if (currentPage >= index) return;
+    setCurrentPage(currentPage + 1);
+    console.log(currentPage);
   };
 
-  const handleHealthScore = (e) => {
+  const prevHandler = () => {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
+    console.log(currentPage);
+  };
+
+  const firstHandler = () => {
+    setCurrentPage(1);
+  };
+
+  const lastHandler = () => {
+    setCurrentPage(index);
+  };
+
+  const handleFilter = (e) => {
     e.preventDefault();
-    dispatch(orderHealthScore(e.target.value));
+    dispatch(filters(e.target.value));
     setCurrentPage(1);
     setOrden(`Ordened ${e.target.value}`);
   };
@@ -55,6 +64,18 @@ const Home = () => {
     setCurrentPage(1);
     setOrden(`Ordened ${e.target.value}`);
   };
+
+  const createsForMe = (e) => {
+    e.preventDefault();
+    dispatch(createForMe(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordened ${e.target.value}`);
+  };
+
+  useEffect(() => {
+    dispatch(getAllRecipes());
+    dispatch(getDiets());
+  }, [dispatch]);
 
   if (!recipes.length) {
     return (
@@ -83,22 +104,26 @@ const Home = () => {
               ))}
             </select>
             <h1 className={a.NumPage}>{currentPage}</h1>
-            <select
-              onChange={(e) => handleSort(e)}
-              className={a.AlphabeticOrder}
-            >
-              <option value="ALL">ALPHABETICAL ORDER</option>
-              <option value="asd">ASCENDANCY</option>
-              <option value="des">DESCENDANT</option>
-            </select>
             <div>
               <select
-                onChange={(e) => handleHealthScore(e)}
+                className={a.HealthOrderSelect}
+                onChange={(e) => createsForMe(e)}
+              >
+                <option value="all">CREATES OR API</option>
+                <option value="create">CREATE</option>
+                <option value="api">API</option>
+              </select>
+            </div>
+            <div>
+              <select
+                onChange={(e) => handleFilter(e)}
                 className={a.HealthOrderSelect}
               >
-                <option value="ALL">HEALTH SCORE ORDER</option>
-                <option value="higher">HIGHER</option>
-                <option value="lower">LOWER</option>
+                <option value="all">FILTERS</option>
+                <option value="asd">A-Z</option>
+                <option value="des">Z-A</option>
+                <option value="higher">HEALTH SCORE HIGHER</option>
+                <option value="lower">HEALTH SCORE LOWER</option>
               </select>
             </div>
             <ButtonForCreator />
@@ -108,6 +133,10 @@ const Home = () => {
               recipesPerPage={recipesPerPage}
               recipes={recipes.length}
               page={page}
+              nextHandler={nextHandler}
+              prevHandler={prevHandler}
+              firstHandler={firstHandler}
+              lastHandler={lastHandler}
             />
           </div>
         </div>

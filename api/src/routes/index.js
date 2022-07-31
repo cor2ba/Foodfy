@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const API_KEY = "47262d327d38449aa8b3d0a208cfed4f";
+const API_KEY = "86449a6902dc4d3698835b053a482101";
 const { Recipe, Diet } = require("../db.js");
 const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
 

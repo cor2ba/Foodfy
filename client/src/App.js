@@ -8,11 +8,11 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Switch>
-        <Route exact path="/recipes/:id" component={RecipeDetail} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/form" component={RecipeCreator} />
+        <Route exact path="/:id" component={RecipeDetail} />
         <Route exact path="/" component={Landing} />
         <Route exact path="*" component={Error404} />
       </Switch>

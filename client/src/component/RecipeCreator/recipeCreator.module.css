@@ -7,6 +7,7 @@
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 .Title:hover {
@@ -58,7 +59,7 @@
   border: 2px solid black;
   color: rgba(0, 0, 0, 0.762);
   background: linear-gradient(to right, green, white, red);
-  padding: 2px;
+  padding: 2px 5px 2px 5px;
   border-radius: 10px;
   text-shadow: white 1px 1px 1px;
 }
