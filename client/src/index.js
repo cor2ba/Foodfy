@@ -4,11 +4,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 import store from "./redux/store";
-import axios from "axios"
-import dotenv from "dotenv";
-dotenv.config();
+// import axios from "axios"
+// import dotenv from "dotenv";
+// dotenv.config();
 
-axios.defaults.baseURL = "https://foodfyhealthy.herokuapp.com/recipes";
+// axios.defaults.baseURL = "https://foodfyhealthy.herokuapp.com/recipes";
 
 
 ReactDOM.render(
