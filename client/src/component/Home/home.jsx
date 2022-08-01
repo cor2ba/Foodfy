@@ -141,7 +141,7 @@ const Home = () => {
           </div>
         </div>
         <div className={a.Card}>
-          {currentRecipes?.map((r) => {
+          {currentRecipes.map((r) => {
             return (
               <RecipesCard
                 key={r.id}
