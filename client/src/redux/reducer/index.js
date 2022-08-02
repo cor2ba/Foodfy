@@ -48,11 +48,13 @@ const rootReducer = (state = initialState, action) => {
       let createForApi = arrF.filter((a) => a.id > 20);
       let array =
         action.payload === "all"
+          ? arrF 
+          : createForMe.length === 0 
+          ? alert("No existe")
+          : !createForMe[0]
           ? arrF
           : action.payload === "api"
           ? createForApi
-          : !createForMe[0]
-          ? arrF
           : action.payload === "create"
           ? createForMe
           : arrF;

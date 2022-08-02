@@ -28,7 +28,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className={a.Container}>
       <input
         className={a.InputRecipes}
         type="text"

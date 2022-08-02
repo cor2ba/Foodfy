@@ -7,7 +7,7 @@ const ButtonForCreator = () => {
     <div>
       <Link to="/form">
         <button className={a.ButtonCreator}>
-          ¿DO YOU WANT TO CREATE A NEW RECIPE?
+          CREATE RECIPE
         </button>
       </Link>
     </div>

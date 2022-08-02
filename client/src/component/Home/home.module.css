@@ -15,6 +15,11 @@
   height: 100px;
 }
 
+.containerNumber{
+  display: flex;
+  justify-content: center;
+}
+
 .InputRecipes {
   background-color: rgba(0, 0, 0, 0.762);
   color: white;
@@ -68,6 +73,8 @@
   border-radius: 30%;
   border: 2px solid black;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 .Page {

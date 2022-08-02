@@ -103,7 +103,6 @@ const Home = () => {
                 </option>
               ))}
             </select>
-            <h1 className={a.NumPage}>{currentPage}</h1>
             <div>
               <select
                 className={a.HealthOrderSelect}
@@ -127,6 +126,9 @@ const Home = () => {
               </select>
             </div>
             <ButtonForCreator />
+          </div>
+          <div className={a.containerNumber}>
+          <h1 className={a.NumPage}>{currentPage}</h1>
           </div>
           <div className={a.Page}>
             <Page

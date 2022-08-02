@@ -9,7 +9,8 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  background-color: rgba(0, 0, 0, 0.339);
+  background: linear-gradient(to right, green, white, red);
+
 }
 
 .CountainerText {
@@ -23,12 +24,12 @@
 }
 
 .Image {
-  margin-top: 50px;
   border: 3px solid black;
   object-fit: contain;
   border-radius: 20px;
-  max-width: 500px;
-  min-width: 500px;
+  margin-top: 20px;
+  max-width: 75%;
+  min-width: 75%;
 }
 
 .TitleMain {

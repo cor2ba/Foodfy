@@ -8,7 +8,6 @@ const CardDetail = (props) => {
         <h1 key={props.id} className={a.TitleMain}>
           {props.title.toUpperCase()}
         </h1>
-        <img className={a.Image} src={props.image} alt="NOT FOUND"></img>
         <h3 className={a.Title}>SUMMARY:</h3>
         <p className={a.Subtitle}>{props.summary.toUpperCase()}</p>
         <h3 className={a.Title}>HEALTH SCORE:</h3>
@@ -28,7 +27,7 @@ const CardDetail = (props) => {
                 return <li>{s.toUpperCase()}</li>;
               })}
         </ul>
-
+        <img className={a.Image} src={props.image} alt="NOT FOUND"></img>
       </div>
     </div>
   );
