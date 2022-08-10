@@ -1,13 +1,24 @@
+.All {
+  background-image: url(../../imgs/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Countainer {
-  position: absolute;
-  left: 32.6%;
-  top: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 40%;
   border: 3px solid black;
   height: 500px;
   width: 650px;
-  border-radius: 46%;
   text-align: center;
-  padding-top: 120px;
   background: linear-gradient(to right, green, white, red);
   font-family: Helvetica;
   text-shadow: white 5px 5px 5px;

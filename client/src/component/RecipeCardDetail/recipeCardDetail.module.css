@@ -1,5 +1,5 @@
 .Countainer {
-  width: 1000px;
+  width: 75%;
   border: 3px solid black;
   border-radius: 50px;
   height: auto;
@@ -10,13 +10,13 @@
   align-items: center;
   align-content: center;
   background: linear-gradient(to right, green, white, red);
-
 }
 
 .CountainerText {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 30px;
 }
 
 .CountainerTwo {

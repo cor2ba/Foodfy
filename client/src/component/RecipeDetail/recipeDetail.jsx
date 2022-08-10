@@ -19,7 +19,7 @@ const RecipeDetail = () => {
 
   if (recipe.length === 0) {
     return (
-      <div className={a.Parent}>
+      <div>
         <Loading />
       </div>
     );
