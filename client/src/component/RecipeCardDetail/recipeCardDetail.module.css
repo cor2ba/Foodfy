@@ -29,8 +29,10 @@
   object-fit: contain;
   border-radius: 20px;
   margin-top: 20px;
-  max-width: 75%;
-  min-width: 75%;
+  max-height: 330px;
+  min-height: 330px;
+  min-width: 500px;
+  max-width: 500px;
 }
 
 .TitleMain {
