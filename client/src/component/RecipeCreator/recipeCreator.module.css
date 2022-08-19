@@ -21,7 +21,7 @@
 .Countainer {
   background-color: rgba(0, 0, 0, 0.339);
   background-size: cover;
-  width: 700px;
+  width: 50%;
   height: auto;
   border-radius: 20px;
   display: flex;

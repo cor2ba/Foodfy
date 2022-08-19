@@ -7,6 +7,10 @@
   height: 100px;
 }
 
+.Countainer {
+  background-image: url("../../imgs/background.jpg");
+}
+
 .containerNumber {
   display: flex;
   justify-content: center;

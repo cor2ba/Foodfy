@@ -1,23 +1,20 @@
+// const API_KEY = "9f606cc157c64ace896eaf50c8a17c4f";
 const { Router } = require("express");
 const axios = require("axios");
-const API_KEY = "9f606cc157c64ace896eaf50c8a17c4f";
 const { Recipe, Diet } = require("../db.js");
-const urlRecipes = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
-// const urlRecipes = "http://localhost:8000/results"
-
+const { data } = require("./food");
 const router = Router();
 
 router.get("/recipes", async (req, res) => {
   try {
-    let recipes = await axios.get(urlRecipes),
-      recipesData = await recipes.data.results;
-    let mapedData = recipesData.map((f) => {
+    let recipesData = data;
+    let mapedData = recipesData.map(f => {
       return {
         image: f.image,
         id: f.id,
         title: f.title.toUpperCase(),
         healthScore: f.healthScore,
-        diets: f.diets?.map((diets) => {
+        diets: f.diets?.map(diets => {
           return {
             diets,
           };
@@ -43,18 +40,17 @@ router.get("/recipes", async (req, res) => {
 router.get("/recipe", async (req, res) => {
   const { name } = req.query;
   try {
-    let recipes = await axios.get(urlRecipes);
-    let recipesData = await recipes.data.results;
-    let filteredName = recipesData.filter((r) =>
+    let recipesData = data;
+    let filteredName = recipesData.filter(r =>
       r.title.toLowerCase().includes(name.toLowerCase())
     );
-    let filtrados = (filteredName = filteredName.map((f) => {
+    let filtrados = (filteredName = filteredName.map(f => {
       return {
         image: f.image,
         id: f.id,
         title: f.title.toUpperCase(),
         healthScore: f.healthScore,
-        diets: f.diets?.map((diets) => {
+        diets: f.diets?.map(diets => {
           return {
             diets,
           };
@@ -71,18 +67,15 @@ router.get("/recipe/:idReceta", async (req, res) => {
   const { idReceta } = req.params;
   try {
     if (idReceta.length < 10) {
-      let recipes = await axios.get(urlRecipes),
-        recipesData = await recipes.data.results;
-      let findedId = recipesData.filter(
-        (r) => Number(r.id) === Number(idReceta)
-      );
-      let filtrados = (findedId = findedId.map((f) => {
+      let recipesData = data;
+      let findedId = recipesData.filter(r => Number(r.id) === Number(idReceta));
+      let filtrados = (findedId = findedId.map(f => {
         if (f.analyzedInstructions.length === 0) {
           return {
             image: f.image,
             id: f.id,
             title: f.title,
-            diets: f.diets?.map((diets) => {
+            diets: f.diets?.map(diets => {
               return {
                 diets,
               };
@@ -96,14 +89,14 @@ router.get("/recipe/:idReceta", async (req, res) => {
           image: f.image,
           id: f.id,
           title: f.title,
-          diets: f.diets?.map((diets) => {
+          diets: f.diets?.map(diets => {
             return {
               diets,
             };
           }),
           healthScore: f.healthScore,
           summary: f.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""),
-          steps: f.analyzedInstructions[0].steps.map((a) => a.step),
+          steps: f.analyzedInstructions[0].steps.map(a => a.step),
         };
       }));
       res.status(200).send(filtrados);
@@ -170,7 +163,7 @@ router.get("/diets", async (req, res) => {
     { diets: "paleolithic" },
     { diets: "pescatarian" },
   ];
-  arrDiets.map((a) => {
+  arrDiets.map(a => {
     Diet.findOrCreate({ where: { diets: a.diets } });
   });
   try {
