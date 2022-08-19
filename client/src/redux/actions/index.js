@@ -13,13 +13,17 @@ export const CLEAR = "CLEAR";
 const axios = require("axios");
 
 export const getAllRecipes = () => async dispatch => {
-  const response = await axios.get("http://localhost:3001/recipes");
+  const response = await axios.get(
+    "https://foodfyhealthy.herokuapp.com/recipes"
+  );
   const payload = await response.data;
   return dispatch({ type: GET_ALL_RECIPES, payload });
 };
 
 export const getRecipeName = name => async dispatch => {
-  const response = await axios.get(`http://localhost:3001/recipe?name=${name}`);
+  const response = await axios.get(
+    `https://foodfyhealthy.herokuapp.com/recipe?name=${name}`
+  );
   const payload = await response.data;
   return dispatch({ type: GET_RECIPE_NAME, payload });
 };
@@ -33,7 +37,10 @@ export const getRecipeName = name => async dispatch => {
 
 export const createRecipe = obj => async dispatch => {
   try {
-    const response = await axios.post(`http://localhost:3001/recipes`, obj);
+    const response = await axios.post(
+      `https://foodfyhealthy.herokuapp.com/recipes`,
+      obj
+    );
     const payload = await response.data;
     return dispatch({ type: CREATE_RECIPE, payload });
   } catch (error) {
@@ -42,19 +49,23 @@ export const createRecipe = obj => async dispatch => {
 };
 
 export const getDiets = () => async dispatch => {
-  const response = await axios.get("http://localhost:3001/diets");
+  const response = await axios.get("https://foodfyhealthy.herokuapp.com/diets");
   const payload = await response.data;
   return dispatch({ type: GET_DIETS, payload });
 };
 
 export const getRecipesId = id => async dispatch => {
-  const response = await axios.get(`http://localhost:3001/recipe/${id}`);
+  const response = await axios.get(
+    `https://foodfyhealthy.herokuapp.com/recipe/${id}`
+  );
   const payload = await response.data;
   return dispatch({ type: GET_RECIPE_ID, payload });
 };
 
 export const deleteBack = id => async dispatch => {
-  const response = await axios.delete(`http://localhost:3001/recipe/${id}`);
+  const response = await axios.delete(
+    `https://foodfyhealthy.herokuapp.com/recipe/${id}`
+  );
   const payload = await response.data;
   return dispatch({ type: DELETE_BACK, payload });
 };
