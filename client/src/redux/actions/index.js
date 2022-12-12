@@ -14,7 +14,7 @@ const axios = require("axios");
 
 export const getAllRecipes = () => async dispatch => {
   const response = await axios.get(
-    "https://foodfyhealthy.herokuapp.com/recipes"
+    "https://pi-recipes-production.up.railway.app/recipes"
   );
   const payload = await response.data;
   return dispatch({ type: GET_ALL_RECIPES, payload });
@@ -22,7 +22,7 @@ export const getAllRecipes = () => async dispatch => {
 
 export const getRecipeName = name => async dispatch => {
   const response = await axios.get(
-    `https://foodfyhealthy.herokuapp.com/recipe?name=${name}`
+    `https://pi-recipes-production.up.railway.app/recipe?name=${name}`
   );
   const payload = await response.data;
   return dispatch({ type: GET_RECIPE_NAME, payload });
@@ -38,7 +38,7 @@ export const getRecipeName = name => async dispatch => {
 export const createRecipe = obj => async dispatch => {
   try {
     const response = await axios.post(
-      `https://foodfyhealthy.herokuapp.com/recipes`,
+      `https://pi-recipes-production.up.railway.app/recipes`,
       obj
     );
     const payload = await response.data;
@@ -49,14 +49,14 @@ export const createRecipe = obj => async dispatch => {
 };
 
 export const getDiets = () => async dispatch => {
-  const response = await axios.get("https://foodfyhealthy.herokuapp.com/diets");
+  const response = await axios.get("https://pi-recipes-production.up.railway.app/diets");
   const payload = await response.data;
   return dispatch({ type: GET_DIETS, payload });
 };
 
 export const getRecipesId = id => async dispatch => {
   const response = await axios.get(
-    `https://foodfyhealthy.herokuapp.com/recipe/${id}`
+    `https://pi-recipes-production.up.railway.app/recipe/${id}`
   );
   const payload = await response.data;
   return dispatch({ type: GET_RECIPE_ID, payload });
@@ -64,7 +64,7 @@ export const getRecipesId = id => async dispatch => {
 
 export const deleteBack = id => async dispatch => {
   const response = await axios.delete(
-    `https://foodfyhealthy.herokuapp.com/recipe/${id}`
+    `https://pi-recipes-production.up.railway.app/recipe/${id}`
   );
   const payload = await response.data;
   return dispatch({ type: DELETE_BACK, payload });
