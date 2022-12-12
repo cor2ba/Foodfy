@@ -7,12 +7,12 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 let sequelize =
   process.env.NODE_ENV === "production"
     ? new Sequelize({
-        database: DB_NAME,
+        database: "railway",
         dialect: "postgres",
-        host: DB_HOST,
+        host: "containers-us-west-143.railway.app",
         port: 5595,
-        username: DB_USER,
-        password: DB_PASSWORD,
+        username: "postgres",
+        password: "XoSloA2FlOLVowrb7SRm",
         pool: {
           max: 3,
           min: 1,
@@ -29,7 +29,7 @@ let sequelize =
         ssl: true,
       })
     : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`,
+        `postgres://postgres:XoSloA2FlOLVowrb7SRm@containers-us-west-143.railway.app/food`,
         { logging: false, native: false }
       );
 const basename = path.basename(__filename);
