@@ -2,34 +2,10 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME, PORT } = process.env;
 
-let sequelize =
-  process.env.NODE_ENV === "production"
-    ? new Sequelize({
-        database: "railway",
-        dialect: "postgres",
-        host: "containers-us-west-143.railway.app",
-        port: 5595,
-        username: "postgres",
-        password: "XoSloA2FlOLVowrb7SRm",
-        pool: {
-          max: 3,
-          min: 1,
-          idle: 10000,
-        },
-        dialectOptions: {
-          ssl: {
-            require: true,
-            // Ref.: https://github.com/brianc/node-postgres/issues/2009
-            rejectUnauthorized: false,
-          },
-          keepAlive: true,
-        },
-        ssl: true,
-      })
-    : new Sequelize(
-        `postgres://postgres:XoSloA2FlOLVowrb7SRm@containers-us-west-143.railway.app/food`,
+let sequelize = new Sequelize(
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
         { logging: false, native: false }
       );
 const basename = path.basename(__filename);

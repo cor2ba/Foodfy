@@ -1,14 +1,12 @@
 // const API_KEY = "9f606cc157c64ace896eaf50c8a17c4f";
 const { Router } = require("express");
-const axios = require("axios");
 const { Recipe, Diet } = require("../db.js");
 const { data } = require("./food");
 const router = Router();
 
 router.get("/recipes", async (req, res) => {
   try {
-    let recipesData = data;
-    let mapedData = recipesData.map(f => {
+    let mapedData = data.map(f => {
       return {
         image: f.image,
         id: f.id,
@@ -40,8 +38,7 @@ router.get("/recipes", async (req, res) => {
 router.get("/recipe", async (req, res) => {
   const { name } = req.query;
   try {
-    let recipesData = data;
-    let filteredName = recipesData.filter(r =>
+    let filteredName = data.filter(r =>
       r.title.toLowerCase().includes(name.toLowerCase())
     );
     let filtrados = (filteredName = filteredName.map(f => {
@@ -67,8 +64,7 @@ router.get("/recipe/:idReceta", async (req, res) => {
   const { idReceta } = req.params;
   try {
     if (idReceta.length < 10) {
-      let recipesData = data;
-      let findedId = recipesData.filter(r => Number(r.id) === Number(idReceta));
+      let findedId = data.filter(r => Number(r.id) === Number(idReceta));
       let filtrados = (findedId = findedId.map(f => {
         if (f.analyzedInstructions.length === 0) {
           return {

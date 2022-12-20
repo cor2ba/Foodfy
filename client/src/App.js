@@ -4,7 +4,9 @@ import RecipeCreator from "./component/RecipeCreator/recipeCreator";
 import Home from "./component/Home/home";
 import RecipeDetail from "./component/RecipeDetail/recipeDetail";
 import Error404 from "./component/Error404/error404";
+import axios from "axios";
 import "./App.css";
+axios.defaults.baseURL ="http://localhost:3001/"
 
 function App() {
   return (
