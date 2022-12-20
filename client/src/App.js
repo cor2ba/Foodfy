@@ -6,7 +6,7 @@ import RecipeDetail from "./component/RecipeDetail/recipeDetail";
 import Error404 from "./component/Error404/error404";
 import axios from "axios";
 import "./App.css";
-axios.defaults.baseURL ="http://localhost:3001/"
+axios.defaults.baseURL ="https://pi-recipes-production-9ab5.up.railway.app/"
 
 function App() {
   return (
