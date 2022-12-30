@@ -5,7 +5,7 @@ import {
   getAllRecipes,
   filters,
   filterByDiets,
-  createForMe,
+  // createForMe,
 } from "../../redux/actions";
 import a from "./home.module.css";
 import RecipesCard from "../RecipesCard/recipesCard";
@@ -65,12 +65,12 @@ const Home = () => {
     setOrden(`Ordened ${e.target.value}`);
   };
 
-  const createsForMe = (e) => {
-    e.preventDefault();
-    dispatch(createForMe(e.target.value));
-    setCurrentPage(1);
-    setOrden(`Ordened ${e.target.value}`);
-  };
+  // const createsForMe = (e) => {
+  //   e.preventDefault();
+  //   dispatch(createForMe(e.target.value));
+  //   setCurrentPage(1);
+  //   setOrden(`Ordened ${e.target.value}`);
+  // };
 
   useEffect(() => {
     dispatch(getAllRecipes());
@@ -103,7 +103,7 @@ const Home = () => {
                 </option>
               ))}
             </select>
-            <div>
+            {/* <div>
               <select
                 className={a.HealthOrderSelect}
                 onChange={(e) => createsForMe(e)}
@@ -112,7 +112,7 @@ const Home = () => {
                 <option value="create">CREATE</option>
                 <option value="api">API</option>
               </select>
-            </div>
+            </div> */}
             <div>
               <select
                 onChange={(e) => handleFilter(e)}

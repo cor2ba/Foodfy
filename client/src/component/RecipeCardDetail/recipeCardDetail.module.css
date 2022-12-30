@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  background: linear-gradient(to right, green, white, red);
+  background-color: rgba(0, 0, 0, 0.339);
 }
 
 .CountainerText {
@@ -28,11 +28,6 @@
   border: 3px solid black;
   object-fit: contain;
   border-radius: 20px;
-  margin-top: 20px;
-  max-height: 330px;
-  min-height: 330px;
-  min-width: 500px;
-  max-width: 500px;
 }
 
 .TitleMain {
@@ -49,14 +44,12 @@
 }
 
 .Title {
-  font-size: 20px;
-  text-shadow: rgba(255, 255, 255, 0.592) 2px 2px 2px;
+  border: 2px solid black;
+  color: rgba(0, 0, 0, 0.762);
   background: linear-gradient(to right, green, white, red);
-  border: 3px solid black;
-  width: 170px;
-  border-radius: 20px;
-  text-align: center;
-  font-family: fantasy;
+  padding: 2px 5px 2px 5px;
+  border-radius: 10px;
+  text-shadow: white 1px 1px 1px;
 }
 
 .Subtitle {
@@ -66,7 +59,7 @@
   align-content: center;
   text-shadow: black 2px 2px 2px;
   font-family: Cardo;
-  width: 700px;
+  margin: 30px 60px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.762);
   border: 3px solid black;
@@ -80,11 +73,10 @@
   align-items: center;
   align-content: center;
   color: white;
-  margin-right: 45px;
+  margin: 30px 60px;
   text-shadow: black 2px 2px 2px;
   text-align: center;
   font-family: Cardo;
-  width: 700px;
   background-color: rgba(0, 0, 0, 0.762);
   border: 3px solid black;
   padding: 20px;

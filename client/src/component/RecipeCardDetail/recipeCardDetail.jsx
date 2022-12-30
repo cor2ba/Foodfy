@@ -8,18 +8,9 @@ const CardDetail = (props) => {
         <h1 key={props.id} className={a.TitleMain}>
           {props.title.toUpperCase()}
         </h1>
-        <h3 className={a.Title}>SUMMARY:</h3>
+        <label className={a.Title}>SUMMARY:</label>
         <p className={a.Subtitle}>{props.summary.toUpperCase()}</p>
-        <h3 className={a.Title}>HEALTH SCORE:</h3>
-        <p className={a.Subtitle}>{props.healthScore}</p>
-        <h3 className={a.Title}>DIETS:</h3>
-        <ul className={a.List}>
-          {props.diets?.map((d) => {
-            return <li>{d.diets.toUpperCase()}</li>;
-          })}
-        </ul>
-
-        <h3 className={a.Title}>STEP TO STEP:</h3>
+        <label className={a.Title}>STEP TO STEP:</label>
         <ul className={a.List}>
           {typeof props.steps === "string"
             ? props.steps.toUpperCase()
@@ -27,6 +18,32 @@ const CardDetail = (props) => {
                 return <li>{s.toUpperCase()}</li>;
               })}
         </ul>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <label className={a.Title}>HEALTH SCORE:</label>
+            <p className={a.Subtitle}>{props.healthScore}</p>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <label className={a.Title}>DIETS:</label>
+            <ul className={a.List}>
+              {props.diets?.map((d) => {
+                return <li>{d.diets.toUpperCase()}</li>;
+              })}
+            </ul>
+          </div>
+        </div>
         <img className={a.Image} src={props.image} alt="NOT FOUND"></img>
       </div>
     </div>
